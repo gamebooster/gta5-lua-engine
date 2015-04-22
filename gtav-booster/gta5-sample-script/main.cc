@@ -133,17 +133,15 @@ public:
 	void WantedLevelScript(){
 		if (GetAsyncKeyState(VK_F9) & 0x8000) {
 
-			PLAYER::SET_PLAYER_WANTED_LEVEL(0, 3, 1);
-			PLAYER::SET_PLAYER_WANTED_LEVEL_NOW(0, 3);
-			PLAYER::SET_PLAYER_INVINCIBLE(0, 1);
+			PLAYER::SET_PLAYER_INVINCIBLE(PLAYER::PLAYER_ID(), 1);
 		}
 	}
 
 	virtual void DoRun() override
 	{
-		VehicleScript();
+		//VehicleScript();
 		WeaponScript();
-		TeleportScript();
+		//TeleportScript();
 		WantedLevelScript();
 	}
 };

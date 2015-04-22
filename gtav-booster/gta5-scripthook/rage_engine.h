@@ -106,8 +106,12 @@ ScriptThread: public rage::scrThread
 public:
 	char gta_pad[64];
 	void* m_pMissionCleanup;
-	char gta_pad2[64];
-	bool attached;
+	char _0x0118[40];
+	BYTE N1A8E7485; //0x0140 
+	bool long_running_thread; //0x0141 
+	BYTE N1A8EA1D0; //0x0142 
+	BYTE N1A8EA9F1; //0x0143 
+	char _0x0144[20];
 	rage::ScriptHandlerManager* script_handler_manager;
 
 public:

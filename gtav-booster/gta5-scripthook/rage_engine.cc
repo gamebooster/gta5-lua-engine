@@ -60,9 +60,9 @@ void rage::ScriptThread::Kill()
 }
 
 rage::THREAD_STATE rage::ScriptThread::Run(uint32_t opsToExecute) {
-	if (!this->attached) {
+	if (!this->m_pMissionCleanup) {
 		script_handler_manager->AttachScript(this);
-		attached = true;
+		this->long_running_thread = true;
 	}
 
 	auto pair = GetActiveThread();
@@ -81,6 +81,7 @@ rage::THREAD_STATE rage::ScriptThread::Run(uint32_t opsToExecute) {
 
 rage::THREAD_STATE rage::ScriptThread::Reset(uint32_t scriptHash, void* pArgs, uint32_t argCount)
 {
+	utils::Log(L"ScriptReset");
 	memset(&m_Context, 0, sizeof(m_Context));
 
 	m_Context.State = rage::ThreadStateIdle;

@@ -64,7 +64,6 @@ namespace rage {
 		thread->SetThreadId(*g_thread_id);
 		thread->script_handler_manager = g_script_handler_manager;
 
-
 		*(g_thread_id)++;
 		*(g_thread_count)++;
 
