@@ -1,0 +1,18 @@
+<XenosConfig>
+	<imagePath>F:\Users\bogus\Documents\GitHub\gta5-lua-engine\x64\Release\gta5-lua-engine.dll</imagePath>
+	<manualMapFlags>0</manualMapFlags>
+	<procName>GTA5.exe</procName>
+	<hijack>0</hijack>
+	<unlink>0</unlink>
+	<erasePE>0</erasePE>
+	<close>0</close>
+	<krnHandle>0</krnHandle>
+	<processMode>0</processMode>
+	<injectMode>0</injectMode>
+	<delay>0</delay>
+	<period>0</period>
+	<procCmdLine/>
+	<initRoutine/>
+	<initArgs/>
+</XenosConfig>
+
