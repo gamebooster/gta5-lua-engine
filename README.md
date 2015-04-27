@@ -1,3 +1,3 @@
-# gta5-scripthook + playground
+# gta5-lua-engine (gta5-scripthook)
 
-First simple script at gtav-booster/gta5-sample-script
+First simple script at scripts/test.lua
