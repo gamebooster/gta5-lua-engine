@@ -41,19 +41,20 @@ struct VERTEX_CONSTANT_BUFFER
 // - in your Render function, try translating your projection matrix by (0.5f,0.5f) or (0.375f,0.375f)
 static void ImGui_ImplDX11_RenderDrawLists(ImDrawList** const cmd_lists, int cmd_lists_count)
 {
-    // Copy and convert all vertices into a single contiguous buffer
-    D3D11_MAPPED_SUBRESOURCE mappedResource;
-    if (g_pd3dDeviceContext->Map(g_pVB, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource) != S_OK)
-        return;
-    ImDrawVert* vtx_dst = (ImDrawVert*)mappedResource.pData;
-    for (int n = 0; n < cmd_lists_count; n++)
-    {
-        const ImDrawList* cmd_list = cmd_lists[n];
-        memcpy(vtx_dst, &cmd_list->vtx_buffer[0], cmd_list->vtx_buffer.size() * sizeof(ImDrawVert));
-        vtx_dst += cmd_list->vtx_buffer.size();
+	{
+		// Copy and convert all vertices into a single contiguous buffer
+		D3D11_MAPPED_SUBRESOURCE mappedResource;
+		if (g_pd3dDeviceContext->Map(g_pVB, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource) != S_OK)
+			return;
+		ImDrawVert* vtx_dst = (ImDrawVert*)mappedResource.pData;
+		for (int n = 0; n < cmd_lists_count; n++)
+		{
+			const ImDrawList* cmd_list = cmd_lists[n];
+			memcpy(vtx_dst, &cmd_list->vtx_buffer[0], cmd_list->vtx_buffer.size() * sizeof(ImDrawVert));
+			vtx_dst += cmd_list->vtx_buffer.size();
+		}
+		g_pd3dDeviceContext->Unmap(g_pVB, 0);
     }
-    g_pd3dDeviceContext->Unmap(g_pVB, 0);
-
     // Setup orthographic projection matrix into our constant buffer
     {
         D3D11_MAPPED_SUBRESOURCE mappedResource;

@@ -47,7 +47,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>FastLTCG</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -80,6 +80,7 @@
     <LinkIncremental>false</LinkIncremental>
     <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
     <IncludePath>$(SolutionDir)lua-intf\LuaIntf;$(ProjectDir);$(SolutionDir)lua-5.3.0\src;$(SolutionDir)jitasm;$(IncludePath)</IncludePath>
+    <TargetName>xfire</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -139,6 +140,9 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\..\imgui;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>common.h</PrecompiledHeaderFile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -147,6 +151,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>lua53.lib;d3d11.lib;d3dcompiler.lib;dxgi.lib;imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(DXSDK_DIR)/Lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

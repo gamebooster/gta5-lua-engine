@@ -6,11 +6,6 @@
 namespace rage {
 
 	class 
-#ifdef COMPILING_SCRIPTHOOK
-		__declspec(dllexport)
-#else
-		__declspec(dllimport)
-#endif
 		ScriptHook {
 	 public:
 			static void AttachScriptThread(rage::ScriptThread* thread);

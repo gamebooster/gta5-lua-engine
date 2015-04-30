@@ -12,12 +12,19 @@ static utils::VtableHook* swapchain_hook = nullptr;
 static bool draw_menu = false;
 static HWND top_window_handle;
 static WNDPROC wndProc;
+static bool* disable_gta_ui = nullptr;
 
 static LRESULT WINAPI Hook(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	if (msg == WM_KEYDOWN && wParam == VK_OEM_3)
 	{
 		draw_menu = !draw_menu;
+		*disable_gta_ui = draw_menu;
+	}
+
+	if (msg == WM_KEYDOWN && wParam == VK_INSERT)
+	{
+		lua::ScriptManager::GetInstance().ReloadScripts();
 	}
 
 	if (draw_menu && ImGui_ImplDX11_WndProcHandler(hwnd, msg, wParam, lParam))
@@ -43,7 +50,11 @@ return result;
 }
 
 DWORD WINAPI InitializeHook(void* arguments) {
-  char* location = hook::pattern("48 8B 0D ? ? ? ? 48 8B 01 33 D2 44 8D 42 01").count(1).get(0).get<char>(3);
+  char* location = hook::pattern("84 C0 74 15 80 3D ? ? ? ? ? 75 0C").count(2).get(0).get<char>(6);
+  disable_gta_ui = reinterpret_cast<bool*>(location + *(int32_t*)location + 5);
+  TextConsole::GetInstance().AddLog("disable_gta_ui %llx", disable_gta_ui);
+
+  location = hook::pattern("48 8B 0D ? ? ? ? 48 8B 01 33 D2 44 8D 42 01").count(1).get(0).get<char>(3);
   IDXGISwapChain1* swapchain = *reinterpret_cast<IDXGISwapChain1**>(location + *(int32_t*)location + 4);
   TextConsole::GetInstance().AddLog("swapchain %llx", swapchain);
 

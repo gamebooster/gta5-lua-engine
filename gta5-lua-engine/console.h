@@ -79,7 +79,7 @@ public:
 		ImGui::Separator();
 
 		//ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0, 0));
-		//static ImGuiTextFilter filter;
+		static ImGuiTextFilter filter;
 		//filter.Draw("Filter (\"incl,-excl\") (\"error\")", 180);
 		////if (ImGui::IsItemHovered()) ImGui::SetKeyboardFocusHere(-1); // Auto focus on hover
 		//ImGui::PopStyleVar();
@@ -93,7 +93,7 @@ public:
 		for (size_t i = 0; i < items.size(); i++)
 		{
 			const char* item = items[i].c_str();
-			ImGui::TextUnformatted(item);
+			ImGui::TextWrapped(item);
 		}
 		if (ScrollToBottom)
 			ImGui::SetScrollPosHere();

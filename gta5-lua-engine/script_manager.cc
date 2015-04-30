@@ -55,6 +55,11 @@ namespace lua {
 		lua::RegisterNativeFunctions(scripts_[name]);
 
 		try {
+			std::wstring wdirectory = utils::GetModuleDirectory();
+			std::string directory = ws2s(wdirectory);
+			directory += "/scripts/";
+			std::replace(directory.begin(), directory.end(), '\\','/');
+			scripts_[name].doString(("package.path = \"" + directory + "?.lua;\" .. package.path").c_str());
 			scripts_[name].doFile(name.c_str());
 			ExecuteScript(name);
 		}
@@ -88,6 +93,20 @@ namespace lua {
 		LeaveCriticalSection(&lock_);
 	}
 
+	void ScriptManager::ReloadScripts()
+	{
+		EnterCriticalSection(&lock_);
+
+		ScriptsMap::iterator it = scripts_.begin();
+		auto end = scripts_.end();
+		while (it != end) {
+			std::string name = it->first;
+			it = scripts_.erase(it);
+			LoadScript(name);
+		}
+		LeaveCriticalSection(&lock_);
+	}
+
 	ScriptManager::ScriptManager() {
 		InitializeCriticalSection(&lock_);
 		script_thread_.SetCallback([&]() {
@@ -96,6 +115,8 @@ namespace lua {
 	}
 
 	void ScriptManager::UnloadScripts() {
+		EnterCriticalSection(&lock_);
 		scripts_.clear();
+		LeaveCriticalSection(&lock_);
 	}
 }  // namespace lua

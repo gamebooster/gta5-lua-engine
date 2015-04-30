@@ -30,7 +30,7 @@ namespace rage {
 		utils::Log(L"ScriptHook: g_thread_count %llx", g_thread_count);
 	}
 
-	void rage::ScriptHook::AttachScriptThread(rage::ScriptThread* thread) {
+	void rage::ScriptHook::AttachScriptThread(rage::ScriptThread* new_thread) {
 		RunPatternScans();
 
 		// get a free thread slot
@@ -54,24 +54,24 @@ namespace rage {
 			return;
 		}
 
-		thread->Reset(1, nullptr, 0);
+		new_thread->Reset(1, nullptr, 0);
 
 		if (*g_thread_id == 0)
 		{
 			(*g_thread_id)++;
 		}
 
-		thread->SetThreadId(*g_thread_id);
-		thread->script_handler_manager = g_script_handler_manager;
+		new_thread->SetThreadId(*g_thread_id);
+		new_thread->script_handler_manager = g_script_handler_manager;
 
 		*(g_thread_id)++;
 		*(g_thread_count)++;
 
 		org_thread = std::pair<ScriptThread*, int>(collection->at(slot), slot);
 
-		collection->set(slot, thread);
+		collection->set(slot, new_thread);
 
-		utils::Log(L"ScriptHook: Attached a new script thread with id: %d at %llx\n", thread->GetThreadId(), thread);
+		utils::Log(L"ScriptHook: Attached a new script thread with id: %d at %llx\n", new_thread->GetThreadId(), new_thread);
 
 	}
 

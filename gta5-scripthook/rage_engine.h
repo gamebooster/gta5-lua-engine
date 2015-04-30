@@ -69,11 +69,6 @@ namespace rage {
 	static_assert(sizeof(scrThreadContext) == 168, "scrThreadContext has wrong size!");
 
 	class
-#ifdef COMPILING_SCRIPTHOOK
-		__declspec(dllexport)
-#else
-		__declspec(dllimport)
-#endif
 		scrThread
 	{
 	protected:
@@ -100,11 +95,6 @@ namespace rage {
 
 
 class
-#ifdef COMPILING_SCRIPTHOOK
-	__declspec(dllexport)
-#else
-	__declspec(dllimport)
-#endif
 ScriptThread: public rage::scrThread
 {
 public:

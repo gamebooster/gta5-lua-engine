@@ -34,6 +34,7 @@ namespace lua {
 		void UnloadScript(const std::string& name);
 		void UnloadScripts();
 		void ExecuteScript(const std::string& name);
+		void ReloadScripts();
 		static ScriptManager& GetInstance();
 
 	private:

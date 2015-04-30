@@ -984,10 +984,10 @@ public:
     /**
      * Get the length of this table (the same as # operator of Lua, but not via metatable).
      */
-    int rawlen() const
+	size_t rawlen() const
     {
         pushToStack();
-        int n = lua_rawlen(L, -1);
+        size_t n = lua_rawlen(L, -1);
         lua_pop(L, 1);
         return n;
     }
@@ -1083,10 +1083,10 @@ public:
     /**
      * Get the length of this table (the same as # operator of Lua).
      */
-    int len() const
+	lua_Integer len() const
     {
         pushToStack();
-        int n = luaL_len(L, -1);
+        lua_Integer n = luaL_len(L, -1);
         lua_pop(L, 1);
         return n;
     }
