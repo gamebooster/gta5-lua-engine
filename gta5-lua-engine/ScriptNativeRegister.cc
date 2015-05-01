@@ -1312,7 +1312,11 @@ namespace lua {
 			.addFunction("GET_FRAME_COUNT", &GET_FRAME_COUNT)
 			.addFunction("GET_RANDOM_FLOAT_IN_RANGE", &GET_RANDOM_FLOAT_IN_RANGE)
 			.addFunction("GET_RANDOM_INT_IN_RANGE", &GET_RANDOM_INT_IN_RANGE)
-			.addFunction("GET_GROUND_Z_FOR_3D_COORD", &GET_GROUND_Z_FOR_3D_COORD)
+			.addFunction("GET_GROUND_Z_FOR_3D_COORD", [](float x, float y, float z) {
+			  float out;
+			  GET_GROUND_Z_FOR_3D_COORD(x, y, z, &out);
+			  return out;
+		    })
 			.addFunction("ASIN", &ASIN)
 			.addFunction("ACOS", &ACOS)
 			.addFunction("TAN", &TAN)
@@ -2944,6 +2948,7 @@ namespace lua {
 			.beginModule("system")
 
 			.addFunction("START_NEW_SCRIPT", &START_NEW_SCRIPT)
+			.addFunction("WAIT", &WAIT)
 			.endModule();
 	}
 
@@ -2975,6 +2980,7 @@ namespace lua {
 		RegisterNativeROPEFunctions(state);
 		RegisterNativeMOBILEFunctions(state);
 		RegisterNativePATHFINDFunctions(state);
+		RegisterNativeSYSTEMFunctions(state);
 
 
 		RegisterUserInterfaceFunctions(state);

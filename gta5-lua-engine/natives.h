@@ -2717,7 +2717,7 @@ namespace ITEMSET
 namespace STREAMING
 {
 	static void LOAD_ALL_OBJECTS_NOW() { rage::NativeInvoke::Invoke<0x61D7DE7855BA322D, uint32_t>(); } // 61D7DE7855BA322D C9DBDA90
-	static void LOAD_SCENE(uint32_t p0, uint32_t p1, uint32_t p2) { rage::NativeInvoke::Invoke<0xACF6EF3086F35588, uint32_t>(p0, p1, p2); } // ACF6EF3086F35588 B72403F5
+	static void LOAD_SCENE(float p0, float p1, float p2) { rage::NativeInvoke::Invoke<0xACF6EF3086F35588, uint32_t>(p0, p1, p2); } // ACF6EF3086F35588 B72403F5
 	static BOOL NETWORK_UPDATE_LOAD_SCENE() { return rage::NativeInvoke::Invoke<0x59A32924D04EF9E2, BOOL>(); } // 59A32924D04EF9E2 C76E023C
 	static void NETWORK_STOP_LOAD_SCENE() { rage::NativeInvoke::Invoke<0x3853D49231A8D913, uint32_t>(); } // 3853D49231A8D913 24857907
 	static uint32_t IS_NETWORK_LOADING_SCENE() { return rage::NativeInvoke::Invoke<0x74231FFA566BF8EB, uint32_t>(); } // 74231FFA566BF8EB 6DCFC021
@@ -3904,7 +3904,6 @@ namespace CONTROLS
 	static uint32_t _0x0B588E50C18B98D3F(uint32_t p0, uint32_t p1, BOOL p2) { return rage::NativeInvoke::Invoke<0x0B588E50C18B98D3F, uint32_t>(p0, p1, p2); } // 0B588E50C18B98D3F 3551727A
 	static uint32_t _0xA493E672277131FE(uint32_t p0, uint32_t p1, BOOL p2) { return rage::NativeInvoke::Invoke<0xA493E672277131FE, uint32_t>(p0, p1, p2); } // A493E672277131FE 3EE71F6A
 	static void _0x5147FAA338AB7B27(uint32_t p0, uint32_t p1, uint32_t p2, uint32_t p3) { rage::NativeInvoke::Invoke<0x5147FAA338AB7B27, uint32_t>(p0, p1, p2, p3); } // 5147FAA338AB7B27
-	static void _0x452724341A49CD8B(uint32_t p0) { rage::NativeInvoke::Invoke<0x452724341A49CD8B, uint32_t>(p0); } // 452724341A49CD8B 7715C03B
 	static void SET_PAD_SHAKE(uint32_t p0, uint32_t p1, uint32_t p2) { rage::NativeInvoke::Invoke<0x5C68F3EBC8A92D55, uint32_t>(p0, p1, p2); } // 5C68F3EBC8A92D55 5D38BD2F
 	static void _0x1D386DC387AF1DB0(uint32_t p0, uint32_t p1, uint32_t p2, uint32_t p3, uint32_t p4) { rage::NativeInvoke::Invoke<0x1D386DC387AF1DB0, uint32_t>(p0, p1, p2, p3, p4); } // 1D386DC387AF1DB0
 	static void STOP_PAD_SHAKE(uint32_t p0) { rage::NativeInvoke::Invoke<0x26D5B88BC1FA1BAB, uint32_t>(p0); } // 26D5B88BC1FA1BAB 8F75657E
@@ -4998,5 +4997,6 @@ namespace UNK3
 
 namespace SYSTEM
 {
+	static void WAIT(uint32_t p0) { rage::NativeInvoke::Invoke<0x452724341A49CD8B, uint32_t>(p0); } // 452724341A49CD8B 7715C03B
 	static int START_NEW_SCRIPT(const char* name, int stack) { return rage::NativeInvoke::Invoke<0xE81651AD79516E48, int>(name, stack); } // E81651AD79516E48 3F166D0E
 }
