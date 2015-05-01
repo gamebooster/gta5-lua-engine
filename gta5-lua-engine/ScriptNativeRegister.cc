@@ -627,6 +627,11 @@ namespace lua {
 			.endModule();
 	}
 
+	int SliderInt(const char* label, int v, int min, int max) {
+		bool changed = ImGui::SliderInt(label, &v, min, max);
+		return v;
+	}
+
 	void RegisterUserInterfaceFunctions(LuaIntf::LuaContext& lua_state) {
 		struct Color {
 			float r, g, b;
@@ -661,10 +666,7 @@ namespace lua {
 				.addFunction("Selectable", [](const char* label, bool selected) {
 				return ImGui::Selectable(label, selected);
 			})
-				.addFunction("SliderInt", [](const char* label, int v, int min, int max) {
-				bool changed = ImGui::SliderInt(label, &v, min, max);
-				return v;
-			})
+				.addFunction("SliderInt", &SliderInt)
 				.addFunction("SliderFloat", [](const char* label, float v, float min, float max) {
 				bool changed = ImGui::SliderFloat(label, &v, min, max);
 				return v;
