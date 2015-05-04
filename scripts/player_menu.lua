@@ -8,6 +8,7 @@ local change_wanted_level = false
 local wants_into_car = false
 local wants_money = false
 local explode_car = false
+local wants_teleport_to = false
 
 function OnScriptTick()
   for i = 0, MAX_PLAYERS, 1 do
@@ -22,9 +23,21 @@ function OnScriptTick()
       end
 	  
 	  if players[i].selected and explode_car then
-	    network.NETWORK_EXPLODE_VEHICLE(ped.GET_VEHICLE_PED_IS_IN(player.GET_PLAYER_PED(i), 1), 1, 0, 0)
+	  	local ped_id = player.GET_PLAYER_PED(i)
+		local blip_id = ui.ADD_BLIP_FOR_ENTITY(ped_id)
+		ui.SET_BLIP_SPRITE(blip_id, 2)
+		ui.SET_BLIP_SCALE(blip_id, 0.7)
+		ui.SET_BLIP_PRIORITY(blip_id, 13);
+		ui.SET_BLIP_NAME_TO_PLAYER_NAME(blip_id, i);
+		ui.SET_BLIP_ALPHA(blip_id, 255);
+	    --network.NETWORK_EXPLODE_VEHICLE(ped.GET_VEHICLE_PED_IS_IN(player.GET_PLAYER_PED(i), 1), 1, 0, 0)
       end
 
+	  if players[i].selected and wants_teleport_to then
+	    local vec = entity.GET_ENTITY_COORDS(player.GET_PLAYER_PED(i), 1)
+        entity.SET_ENTITY_COORDS(player.PLAYER_PED_ID(), vec.x, vec.y, vec.z, 1, 1, 1, 1)
+	  end
+	  
 	  if players[i].selected and wants_into_car then
 	    local last_vehicle_id = ped.GET_VEHICLE_PED_IS_IN(player.GET_PLAYER_PED(i), 1)
         ai.CLEAR_PED_TASKS_IMMEDIATELY(player.GET_PLAYER_PED(i))
@@ -37,10 +50,10 @@ function OnScriptTick()
 	  if players[i].selected and wants_money then
 	    local vec = entity.GET_ENTITY_COORDS(player.GET_PLAYER_PED(i), 1)
 	    local hash_money = gameplay.GET_HASH_KEY("PICKUP_MONEY_CASE")
-	    local hash = 0xB58259BD
-	    streaming.REQUEST_MODEL(hash)
-	    if streaming.HAS_MODEL_LOADED(hash) then
-	      object.CREATE_AMBIENT_PICKUP(hash_money, vec.x, vec.y, vec.z, 0, 40000, hash, 0, 1)
+	    local hash_money_bag = gameplay.GET_HASH_KEY("prop_money_bag_01")
+	    streaming.REQUEST_MODEL(hash_money_bag)
+	    if streaming.HAS_MODEL_LOADED(hash_money_bag) then
+	      object.CREATE_AMBIENT_PICKUP(hash_money, vec.x, vec.y, vec.z, 0, 40000, hash_money_bag, 0, 1)
 	    end
 	  end
     else
@@ -52,6 +65,7 @@ function OnScriptTick()
   wants_money = false
   wants_into_car = false
   explode_car = false
+  wants_teleport_to = false
 end
 
 function OnDrawTick()
@@ -63,6 +77,10 @@ function OnDrawTick()
 	gui.SameLine()
 	if gui.Button("Spawn into car") then
 	  wants_into_car = true
+	end
+	gui.SameLine()
+	if gui.Button("Teleport to") then
+	  wants_teleport_to = true
 	end
 	gui.SameLine()
     if gui.Button("Spawn Money") then

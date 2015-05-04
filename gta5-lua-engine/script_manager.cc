@@ -109,9 +109,13 @@ namespace lua {
 
 	ScriptManager::ScriptManager() {
 		InitializeCriticalSection(&lock_);
-		script_thread_.SetCallback([&]() {
-			CallOnScriptThread();
-		});
+		script_thread_.SetCallback(static_cast<void(*)()>([]() {
+			while (true)
+			{
+				ScriptManager::GetInstance().CallOnScriptThread();
+				WAIT(0);
+			}
+		}));
 	}
 
 	void ScriptManager::UnloadScripts() {

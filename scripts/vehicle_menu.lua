@@ -36,7 +36,10 @@ function OnScriptTick()
 	  streaming.REQUEST_MODEL(hash)
 	  if streaming.HAS_MODEL_LOADED(hash) then
 	    local vec = entity.GET_ENTITY_COORDS(id, 1)
-		local vehicle_id = vehicle.CREATE_VEHICLE(hash, vec.x, vec.y + 5, vec.z, 0, 0, 0)
+		local vehicle_id = vehicle.CREATE_VEHICLE(hash, vec.x, vec.y + 5, vec.z, 0, 1, 0)
+		
+		local net_id = network.VEH_TO_NET(vehicle_id)
+		network.SET_NETWORK_ID_EXISTS_ON_ALL_MACHINES(net_id, 1)
 		ai.TASK_WARP_PED_INTO_VEHICLE(player.PLAYER_PED_ID(), vehicle_id, -1)
 	  end
 	end

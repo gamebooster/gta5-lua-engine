@@ -3,7 +3,6 @@
 // ImGui Win32 + DirectX11 binding
 // https://github.com/ocornut/imgui
 
-#include <imgui.h>
 #include "imgui_impl_dx11.h"
 
 // DirectX
@@ -36,6 +35,87 @@ struct VERTEX_CONSTANT_BUFFER
     float        mvp[4][4];
 };
 
+typedef struct
+{
+	ID3D11RasterizerState* pRasterizer;
+	ID3D11DepthStencilState* pDepthStencilState;
+	ID3D11BlendState* pBlendState;
+	ID3D11SamplerState* pSamplerState;
+	ID3D11ShaderResourceView* pShaderResourceView;
+	ID3D11PixelShader* pPixelShader;
+	ID3D11VertexShader* pVertexShader;
+	ID3D11InputLayout* pInputLayout;
+
+	ID3D11Buffer  *m_pVB;
+	UINT  m_vertexStride;
+	UINT  m_vertexOffset;
+
+	ID3D11Buffer  *m_pVSConstantBuffer;
+
+	D3D11_PRIMITIVE_TOPOLOGY PrimitiveTopology;
+
+	FLOAT fBlendFactor[4];
+	UINT uiBlendSampleMask, uiDepthStencilRef;
+
+}ID3D11StateBlock;
+
+static ID3D11StateBlock gOriginalState;
+
+void StoreState()
+{
+	g_pd3dDeviceContext->IAGetInputLayout(&gOriginalState.pInputLayout);
+	g_pd3dDeviceContext->IAGetPrimitiveTopology(&gOriginalState.PrimitiveTopology);
+
+	g_pd3dDeviceContext->IAGetVertexBuffers(0, 1, &gOriginalState.m_pVB, &gOriginalState.m_vertexStride, &gOriginalState.m_vertexOffset);
+
+	g_pd3dDeviceContext->VSGetConstantBuffers(0, 1, &gOriginalState.m_pVSConstantBuffer);
+
+	g_pd3dDeviceContext->PSGetSamplers(0, 1, &gOriginalState.pSamplerState);
+	g_pd3dDeviceContext->PSGetShaderResources(0, 1, &gOriginalState.pShaderResourceView);
+	g_pd3dDeviceContext->PSGetShader(&gOriginalState.pPixelShader, NULL, NULL);
+
+	g_pd3dDeviceContext->RSGetState(&gOriginalState.pRasterizer);
+
+	g_pd3dDeviceContext->OMGetBlendState(&gOriginalState.pBlendState, gOriginalState.fBlendFactor, &gOriginalState.uiBlendSampleMask);
+	g_pd3dDeviceContext->OMGetDepthStencilState(&gOriginalState.pDepthStencilState, &gOriginalState.uiDepthStencilRef);
+
+	g_pd3dDeviceContext->VSGetShader(&gOriginalState.pVertexShader, NULL, NULL);
+}
+
+#define SAFERELEASE(_p) { if(_p) { (_p)->Release(); (_p) = NULL; } }
+
+void RestoreState()
+{
+	g_pd3dDeviceContext->IASetInputLayout(gOriginalState.pInputLayout);
+	g_pd3dDeviceContext->IASetPrimitiveTopology(gOriginalState.PrimitiveTopology);
+
+	g_pd3dDeviceContext->PSSetSamplers(0, 1, &gOriginalState.pSamplerState);
+	g_pd3dDeviceContext->PSSetShaderResources(0, 1, &gOriginalState.pShaderResourceView);
+	g_pd3dDeviceContext->PSSetShader(gOriginalState.pPixelShader, NULL, NULL);
+
+	g_pd3dDeviceContext->RSSetState(gOriginalState.pRasterizer);
+
+	//g_pd3dDeviceContext->OMSetBlendState(gOriginalState.pBlendState, gOriginalState.fBlendFactor, gOriginalState.uiBlendSampleMask);
+	//g_pd3dDeviceContext->OMSetDepthStencilState(gOriginalState.pDepthStencilState, gOriginalState.uiDepthStencilRef);
+
+	g_pd3dDeviceContext->VSSetShader(gOriginalState.pVertexShader, NULL, NULL);
+
+	g_pd3dDeviceContext->IASetVertexBuffers(0, 1, &gOriginalState.m_pVB, &gOriginalState.m_vertexStride, &gOriginalState.m_vertexOffset);
+
+	g_pd3dDeviceContext->VSSetConstantBuffers(0, 1, &gOriginalState.m_pVSConstantBuffer);
+
+	SAFERELEASE(gOriginalState.m_pVSConstantBuffer);
+	SAFERELEASE(gOriginalState.pInputLayout);
+	SAFERELEASE(gOriginalState.pPixelShader);
+	SAFERELEASE(gOriginalState.pVertexShader);
+	SAFERELEASE(gOriginalState.pRasterizer);
+	//SAFERELEASE(gOriginalState.pBlendState);
+	//SAFERELEASE(gOriginalState.pDepthStencilState);
+	SAFERELEASE(gOriginalState.pSamplerState);
+	SAFERELEASE(gOriginalState.pShaderResourceView);
+	SAFERELEASE(gOriginalState.m_pVB);
+}
+
 // This is the main rendering function that you have to implement and provide to ImGui (via setting up 'RenderDrawListsFn' in the ImGuiIO structure)
 // If text or lines are blurry when integrating ImGui in your engine:
 // - in your Render function, try translating your projection matrix by (0.5f,0.5f) or (0.375f,0.375f)
@@ -54,7 +134,7 @@ static void ImGui_ImplDX11_RenderDrawLists(ImDrawList** const cmd_lists, int cmd
 			vtx_dst += cmd_list->vtx_buffer.size();
 		}
 		g_pd3dDeviceContext->Unmap(g_pVB, 0);
-    }
+	}
     // Setup orthographic projection matrix into our constant buffer
     {
         D3D11_MAPPED_SUBRESOURCE mappedResource;
@@ -79,33 +159,38 @@ static void ImGui_ImplDX11_RenderDrawLists(ImDrawList** const cmd_lists, int cmd
 
     // Setup viewport
     {
-        D3D11_VIEWPORT vp;
-        memset(&vp, 0, sizeof(D3D11_VIEWPORT));
-        vp.Width = ImGui::GetIO().DisplaySize.x;
-        vp.Height = ImGui::GetIO().DisplaySize.y;
-        vp.MinDepth = 0.0f;
-        vp.MaxDepth = 1.0f;
-        vp.TopLeftX = 0;
-        vp.TopLeftY = 0;
-        g_pd3dDeviceContext->RSSetViewports(1, &vp);
+        //D3D11_VIEWPORT vp;
+        //memset(&vp, 0, sizeof(D3D11_VIEWPORT));
+        //vp.Width = ImGui::GetIO().DisplaySize.x;
+        //vp.Height = ImGui::GetIO().DisplaySize.y;
+        //vp.MinDepth = 0.0f;
+        //vp.MaxDepth = 1.0f;
+        //vp.TopLeftX = 0;
+        //vp.TopLeftY = 0;
+        //g_pd3dDeviceContext->RSSetViewports(1, &vp);
     }
 
-    // Bind shader and vertex buffers
+	StoreState();
+
+    //// Bind shader and vertex buffers
     unsigned int stride = sizeof(ImDrawVert);
     unsigned int offset = 0;
     g_pd3dDeviceContext->IASetInputLayout(g_pInputLayout);
+
     g_pd3dDeviceContext->IASetVertexBuffers(0, 1, &g_pVB, &stride, &offset);
     g_pd3dDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
     g_pd3dDeviceContext->VSSetShader(g_pVertexShader, NULL, 0);
     g_pd3dDeviceContext->VSSetConstantBuffers(0, 1, &g_pVertexConstantBuffer);
     g_pd3dDeviceContext->PSSetShader(g_pPixelShader, NULL, 0);
+
     g_pd3dDeviceContext->PSSetSamplers(0, 1, &g_pFontSampler);
 
-    // Setup render state
-    const float blendFactor[4] = { 0.f, 0.f, 0.f, 0.f };
-    g_pd3dDeviceContext->OMSetBlendState(g_blendState, blendFactor, 0xffffffff);
+    //// Setup render state
+    ////const float blendFactor[4] = { 0.f, 0.f, 0.f, 0.f };
+    ////g_pd3dDeviceContext->OMSetBlendState(g_blendState, blendFactor, 0xffffffff);
 
-    // Render command lists
+     //Render command lists
     int vtx_offset = 0;
     for (int n = 0; n < cmd_lists_count; n++)
     {
@@ -128,10 +213,8 @@ static void ImGui_ImplDX11_RenderDrawLists(ImDrawList** const cmd_lists, int cmd
         }
     }
 
-    // Restore modified state
-    g_pd3dDeviceContext->IASetInputLayout(NULL);
-    g_pd3dDeviceContext->PSSetShader(NULL, NULL, 0);
-    g_pd3dDeviceContext->VSSetShader(NULL, NULL, 0);
+    //// Restore modified state
+	RestoreState();
 }
 
 LRESULT ImGui_ImplDX11_WndProcHandler(HWND, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -448,6 +531,9 @@ void ImGui_ImplDX11_NewFrame()
     // io.MousePos : filled by WM_MOUSEMOVE events
     // io.MouseDown : filled by WM_*BUTTON* events
     // io.MouseWheel : filled by WM_MOUSEWHEEL events
+
+    // Hide OS mouse cursor if ImGui is drawing it
+    SetCursor(io.MouseDrawCursor ? NULL : LoadCursor(NULL, IDC_ARROW));
 
     // Start the frame
     ImGui::NewFrame();

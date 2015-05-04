@@ -37,16 +37,16 @@ if (draw_menu) {
 	ImGui_ImplDX11_NewFrame();
 
 	ImGui::Begin("gta5-lua-engine by skomski");
-	lua::ScriptManager::GetInstance().CallOnDrawTick();
+	//lua::ScriptManager::GetInstance().CallOnDrawTick();
 	ImGui::End();
 
-	TextConsole::GetInstance().Run("Console", &draw_menu);
+	//TextConsole::GetInstance().Run("Console", &draw_menu);
 
 	ImGui::Render();
 }
-typedef int(__cdecl* OrgMethod) (IDXGISwapChain* SwapChain, UINT SyncInterval, UINT Flags);
-auto result = swapchain_hook->GetMethod<OrgMethod>(8)(SwapChain, SyncInterval, Flags);
-return result;
+	
+typedef HRESULT (*Present1) (IDXGISwapChain1* SwapChain, UINT SyncInterval, UINT Flags);
+return swapchain_hook->GetMethod<Present1>(8)(SwapChain, SyncInterval, Flags);
 }
 
 DWORD WINAPI InitializeHook(void* arguments) {

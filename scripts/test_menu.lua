@@ -2,6 +2,7 @@ require 'keycodes'
 
 local explode_near_car = false
 local warp_into_car = false
+local want_resurrect = false
 
 local weapons = {
 "weapon_advancedrifle", "weapon_appistol", "weapon_assaultrifle",
@@ -23,11 +24,16 @@ local weapons = {
 }
 
 local give_weapons = false
+local counter = 0
+
+local test_overlay = false
 
 function OnScriptTick()
-  -- if gui.KeyPressed(KEY_0) then
-    -- warp_into_car = true
-  -- end
+  if gui.KeyPressed(KEY_0) then
+    player.SET_PLAYER_INVINCIBLE(player.PLAYER_ID(), 1)
+    --test.SendTextMessage(player.PLAYER_ID(), '<img src="img://ClanTexture17801373_2/ClanTexture17801373_2">')
+	--counter = counter + 1
+  end
   -- if gui.KeyPressed(KEY_9) then
     -- explode_near_car = true
   -- end
@@ -39,6 +45,24 @@ function OnScriptTick()
 	    weapon.GIVE_DELAYED_WEAPON_TO_PED(player.PLAYER_PED_ID(), hash, 999, 1)
 	  end
 	end
+  end
+  
+  if test_overlay then
+    ped.SET_PED_HEAD_OVERLAY(player.PLAYER_PED_ID(), 1, 0, 1)
+	ped.SET_PED_HEAD_OVERLAY(player.PLAYER_PED_ID(), 2, 0, 1)
+	ped.SET_PED_HEAD_OVERLAY(player.PLAYER_PED_ID(), 3, 0, 1)
+	ped.SET_PED_HEAD_OVERLAY(player.PLAYER_PED_ID(), 4, 0, 1)
+	ped.SET_PED_HEAD_OVERLAY(player.PLAYER_PED_ID(), 5, 0, 1)
+	ped.SET_PED_HEAD_OVERLAY(player.PLAYER_PED_ID(), 6, 0, 1)
+  end
+  
+  if want_resurrect then
+    local vec = entity.GET_ENTITY_COORDS(player.PLAYER_PED_ID(), 1)
+    network.NETWORK_RESURRECT_LOCAL_PLAYER(vec.x, vec.y, vec.z, 0, 0, 1, 1);
+    --ped.REVIVE_INJURED_PED(player.PLAYER_PED_ID())
+    --ped.RESURRECT_PED(player.PLAYER_PED_ID())
+    ----entity.SET_ENTITY_HEALTH(player.PLAYER_PED_ID(), 1000)
+    --player.SET_PLAYER_INVINCIBLE(player.PLAYER_ID(), 1)
   end
   
   if warp_into_car then
@@ -59,13 +83,29 @@ function OnScriptTick()
   explode_near_car = false
   warp_into_car = false
   give_weapons = false
+  want_resurrect = false
+  test_overlay = false
 end
+
+local slider_counter = 0
+local changed = false
+local display_text = false
 
 function OnDrawTick()
   if gui.TreeNode("Test") then
+  
+    changed, slider_counter = gui.SliderInt("test", slider_counter, 0, 10)
+	if changed or display_text then
+	  display_text = true
+	  gui.Text(tostring(changed) .. " " .. slider_counter)
+	end
 
 	if gui.Button("Explode near car") then
 	  explode_near_car = true
+	end
+	
+	if gui.Button("test_overlay") then
+	  test_overlay = true
 	end
 	
 	if gui.Button("Warp into near car") then
@@ -74,6 +114,10 @@ function OnDrawTick()
 	
 	if gui.Button("Give Weapons") then
 	  give_weapons = true
+	end
+	
+	if gui.Button("Resurrect") then
+	  want_resurrect = true
 	end
 	
 	gui.TreePop()

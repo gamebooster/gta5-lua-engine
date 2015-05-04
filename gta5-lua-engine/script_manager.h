@@ -4,9 +4,18 @@
 #include <map>
 #include <string>
 
+#define COMPILE_BLADE_SCRIPTHOOK
+
+#ifdef COMPILE_BLADE_SCRIPTHOOK
+#include "..\gta5-blade-scripthook\include\main.h"
+#pragma comment(lib,"..\\gta5-blade-scripthook\\lib\\ScriptHookV.lib")
+#endif
+
 namespace lua {
 	class ManagedScriptThread : rage::ScriptThread {
-		std::function<void()> callback;
+		typedef void(*callback_func)();
+
+		callback_func callback;
 		virtual void DoRun() override {
 			callback();
 		}
@@ -16,12 +25,20 @@ namespace lua {
 		  ManagedScriptThread() {
 		  }
 		  ~ManagedScriptThread() {
+#ifdef COMPILE_BLADE_SCRIPTHOOK
+			  scriptUnregister(callback);
+#else
 			  rage::ScriptHook::DetachScriptThread(this);
+#endif
 		  }
 
-		  void SetCallback(std::function<void()> cb) {
+		  void SetCallback(callback_func cb) {
 			  callback = cb;
+#ifdef COMPILE_BLADE_SCRIPTHOOK
+			  scriptRegister(GetModuleHandle(NULL), callback);
+#else
 			  rage::ScriptHook::AttachScriptThread(this);
+#endif
 		  }
 
 	};

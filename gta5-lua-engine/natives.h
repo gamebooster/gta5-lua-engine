@@ -715,7 +715,7 @@ namespace PED
 	static void _0x64AD6D8CC4C8D9F3(uint32_t p0) { rage::NativeInvoke::Invoke<0x64AD6D8CC4C8D9F3, uint32_t>(p0); } // 64AD6D8CC4C8D9F3 A0134498
 	static void REVIVE_INJURED_PED(uint32_t p0) { rage::NativeInvoke::Invoke<0xB50E81059EB87236, uint32_t>(p0); } // B50E81059EB87236 14D3E6E3
 	static void RESURRECT_PED(uint32_t p0) { rage::NativeInvoke::Invoke<0x636FF869C08C00AC, uint32_t>(p0); } // 636FF869C08C00AC A4B82097
-	static void SET_PED_NAME_DEBUG(uint32_t p0, uint32_t p1) { rage::NativeInvoke::Invoke<0x3F671607BC1804B5, uint32_t>(p0, p1); } // 3F671607BC1804B5 20D6273E
+	static void SET_PED_NAME_DEBUG(uint32_t p0, const char* p1) { rage::NativeInvoke::Invoke<0x3F671607BC1804B5, uint32_t>(p0, p1); } // 3F671607BC1804B5 20D6273E
 	static Vector3 GET_PED_EXTRACTED_DISPLACEMENT(uint32_t p0, BOOL p1) { return rage::NativeInvoke::Invoke<0xD29FE5456F5F7171, Vector3>(p0, p1); } // D29FE5456F5F7171 5231F901
 	static void SET_PED_DIES_WHEN_INJURED(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x78BFEA1E2E65768C, uint32_t>(p0, p1); } // 78BFEA1E2E65768C E94E24D4
 	static void SET_PED_ENABLE_WEAPON_BLOCKING(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0xF6784072BE8C52D, uint32_t>(p0, p1); } // F6784072BE8C52D 4CAD1A4A
@@ -4347,7 +4347,7 @@ namespace NETWORK
 	static uint32_t NETWORK_GET_DESTROYER_OF_NETWORK_ID(uint32_t p0, uint32_t *p1) { return rage::NativeInvoke::Invoke<0xDB209D16617B9D30, uint32_t>(p0, p1); } // DB209D16617B9D30 4FCA6436
 	static BOOL _0x34CC9E6A33706922(uint32_t p0, uint32_t p1, uint32_t *p2) { return rage::NativeInvoke::Invoke<0x34CC9E6A33706922, BOOL>(p0, p1, p2); } // 34CC9E6A33706922 28A45454
 	static uint32_t NETWORK_GET_ENTITY_KILLER_OF_PLAYER(uint32_t p0, uint32_t *p1) { return rage::NativeInvoke::Invoke<0x4E0031459A9C15D5, uint32_t>(p0, p1); } // 4E0031459A9C15D5 A7E7E04F
-	static void NETWORK_RESURRECT_LOCAL_PLAYER(uint32_t p0, uint32_t p1, uint32_t p2, uint32_t p3, uint32_t p4, uint32_t p5) { rage::NativeInvoke::Invoke<0x9C32E5EB35C1F4AC, uint32_t>(p0, p1, p2, p3, p4, p5); } // 9C32E5EB35C1F4AC F1F9D4B4
+	static void NETWORK_RESURRECT_LOCAL_PLAYER(float p0, float p1, float p2, uint32_t p3, uint32_t p4, uint32_t p5) { rage::NativeInvoke::Invoke<0x9C32E5EB35C1F4AC, uint32_t>(p0, p1, p2, p3, p4, p5); } // 9C32E5EB35C1F4AC F1F9D4B4
 	static void NETWORK_SET_LOCAL_PLAYER_INVINCIBLE_TIME(uint32_t p0) { rage::NativeInvoke::Invoke<0xA97BC2AA612D020B, uint32_t>(p0); } // A97BC2AA612D020B FEA9B85C
 	static BOOL NETWORK_IS_LOCAL_PLAYER_INVINCIBLE() { return rage::NativeInvoke::Invoke<0x6AD9A2E74580EFA1, BOOL>(); } // 6AD9A2E74580EFA1 8DE13B36
 	static void _0xA8AC5B96A8581942(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0xA8AC5B96A8581942, uint32_t>(p0, p1); } // A8AC5B96A8581942 8D27280E

@@ -30,7 +30,7 @@ public:
     explicit LuaException(lua_State* L) noexcept
     {
         if (lua_gettop(L) > 0) {
-           m_what = lua_tostring(L, -1);
+            m_what = lua_tostring(L, -1);
         } else {
             m_what = "unknown error";
         }
