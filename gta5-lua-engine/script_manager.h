@@ -40,7 +40,7 @@ namespace lua {
 	public:
 		void CallOnDrawTick();
 
-		void LoadScript(const std::string& name);
+		bool LoadScript(const std::string& name);
 		void UnloadScript(const std::string& name);
 		void UnloadScripts();
 		void ExecuteScript(const std::string& name);

@@ -48,8 +48,9 @@ namespace lua {
 		LeaveCriticalSection(&lock_);
 	}
 
-	void ScriptManager::LoadScript(const std::string& name) {
+	bool ScriptManager::LoadScript(const std::string& name) {
 		EnterCriticalSection(&lock_);
+
 		UnloadScript(name);
 
 		lua::RegisterNativeFunctions(scripts_[name]);
@@ -66,8 +67,14 @@ namespace lua {
 		catch (LuaIntf::LuaException ex) {
 			TextConsole::GetInstance().AddLog("%s", ex.what());
 			UnloadScript(name);
+
+      LeaveCriticalSection(&lock_);
+      return false;
 		}
+
 		LeaveCriticalSection(&lock_);
+
+    return true;
 	}
 	void ScriptManager::UnloadScript(const std::string& name) {
 		EnterCriticalSection(&lock_);

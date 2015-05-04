@@ -32,7 +32,7 @@ static void LoadAllScripts() {
 
   std::string script_name;
   while (infile >> script_name) {
-    lua::ScriptManager::GetInstance().LoadScript(script_name);
+    lua::ScriptManager::GetInstance().LoadScript(GetScriptPath(script_name));
     TextConsole::GetInstance().AddLog("Loaded " + script_name);
   }
 }
@@ -50,6 +50,7 @@ static LRESULT WINAPI Hook(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
   if (msg == WM_KEYDOWN && wParam == VK_DELETE) {
     lua::ScriptManager::GetInstance().ReloadScripts();
+    TextConsole::GetInstance().AddLog("Reloaded scripts");
   }
 
   if (draw_menu && ImGui_ImplDX11_WndProcHandler(hwnd, msg, wParam, lParam)) {
@@ -103,8 +104,9 @@ DWORD WINAPI InitializeHook(void* arguments) {
 
   TextConsole::GetInstance().RegisterCommand("load", [](std::vector<std::string> cmd) {
     if (!cmd.empty() && !cmd[1].empty()) {
-      lua::ScriptManager::GetInstance().LoadScript(GetScriptPath(cmd[1]));
-      TextConsole::GetInstance().AddLog("Loaded " + cmd[1]);
+      if (lua::ScriptManager::GetInstance().LoadScript(GetScriptPath(cmd[1]))) {
+        TextConsole::GetInstance().AddLog("Loaded " + cmd[1]);
+      }
     }
   });
 
@@ -121,7 +123,7 @@ DWORD WINAPI InitializeHook(void* arguments) {
 
   TextConsole::GetInstance().RegisterCommand("unloadall", [](std::vector<std::string> cmd) {
     lua::ScriptManager::GetInstance().UnloadScripts();
-    TextConsole::GetInstance().AddLog("Unloaded all");
+    TextConsole::GetInstance().AddLog("Unloaded all scripts");
   });
 
   return 1;

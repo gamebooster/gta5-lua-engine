@@ -70,7 +70,7 @@ end
 
 function OnDrawTick()
   if gui.TreeNode("Players") then
-    wanted_level = gui.SliderInt("Wanted Level", wanted_level, 0, 6)
+    changed, wanted_level = gui.SliderInt("Wanted Level", wanted_level, 0, 6)
     if gui.Button("Set Wanted Level") then
 	  change_wanted_level = true
 	end
