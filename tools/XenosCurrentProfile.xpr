@@ -1,5 +1,5 @@
 <XenosConfig>
-	<imagePath>F:\Users\bogus\Documents\GitHub\gta5-lua-engine\x64\Release\gta5-lua-engine.dll</imagePath>
+	<imagePath>F:\Users\bogus\Documents\GitHub\gta5-lua-engine\x64\Release\xfire.dll</imagePath>
 	<manualMapFlags>0</manualMapFlags>
 	<procName>GTA5.exe</procName>
 	<hijack>0</hijack>
