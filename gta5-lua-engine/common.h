@@ -12,6 +12,7 @@
 #include "LuaIntf.h"
 #include "..\gta5-scripthook\rage_script_hook.h"
 #include "common_helpers.h"
+#include <fstream>
 
 #ifdef COMPILE_BLADE_SCRIPTHOOK
 #include "..\gta5-blade-scripthook\include\main.h"

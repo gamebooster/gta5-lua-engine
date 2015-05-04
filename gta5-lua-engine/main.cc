@@ -1,6 +1,5 @@
 #include "common.h"
 
-#include "..\readerwriterqueue\readerwriterqueue.h"
 #include "console.h"
 #include "script_manager.h"
 #include "..\gta5-scripthook\utils.h"
@@ -18,39 +17,62 @@ static HWND top_window_handle;
 static WNDPROC wndProc;
 static bool* disable_gta_ui = nullptr;
 
-static LRESULT WINAPI Hook(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
-{
-	if (msg == WM_KEYDOWN && wParam == VK_OEM_3)
-	{
+const uint32_t PRESENT_VTABLE_INDEX = 8;
+
+static std::string GetScriptPath(std::string script_name) {
+  std::wstring wdirectory = utils::GetModuleDirectory();
+  std::string directory = ws2s(wdirectory);
+  directory += "\\scripts\\";
+  directory += script_name;
+  return directory;
+}
+
+static void LoadAllScripts() {
+  std::ifstream infile(GetScriptPath("loadall.txt"));
+
+  std::string script_name;
+  while (infile >> script_name) {
+    lua::ScriptManager::GetInstance().LoadScript(script_name);
+    TextConsole::GetInstance().AddLog("Loaded " + script_name);
+  }
+}
+
+static LRESULT WINAPI Hook(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+	if (msg == WM_KEYDOWN && wParam == VK_OEM_3) {
 		draw_menu = !draw_menu;
 		*disable_gta_ui = draw_menu;
+		return true;
 	}
 
-	if (msg == WM_KEYDOWN && wParam == VK_INSERT)
-	{
+  if (msg == WM_KEYDOWN && wParam == VK_INSERT) {
+    LoadAllScripts();
+  }
+
+	if (msg == WM_KEYDOWN && wParam == VK_DELETE) {
 		lua::ScriptManager::GetInstance().ReloadScripts();
 	}
 
-	if (draw_menu && ImGui_ImplDX11_WndProcHandler(hwnd, msg, wParam, lParam))
+	if (draw_menu && ImGui_ImplDX11_WndProcHandler(hwnd, msg, wParam, lParam)) {
 		return true;
+	}
 	return CallWindowProcW(wndProc, hwnd, msg, wParam, lParam);
 }
 
-HRESULT __cdecl PresentHook(IDXGISwapChain1* SwapChain, UINT SyncInterval, UINT Flags) {
-if (draw_menu) {
-	ImGui_ImplDX11_NewFrame();
+HRESULT PresentHook(IDXGISwapChain1* SwapChain, UINT SyncInterval, UINT Flags) {
+  if (draw_menu) {
+	  ImGui_ImplDX11_NewFrame();
 
-	ImGui::Begin("gta5-lua-engine by skomski");
-	//lua::ScriptManager::GetInstance().CallOnDrawTick();
-	ImGui::End();
+	  ImGui::Begin("gta5-lua-engine by skomski");
+	  lua::ScriptManager::GetInstance().CallOnDrawTick();
+	  ImGui::End();
 
-	//TextConsole::GetInstance().Run("Console", &draw_menu);
+	  TextConsole::GetInstance().Run("Console", &draw_menu);
 
-	ImGui::Render();
-}
+	  ImGui::Render();
+  }
 	
-typedef HRESULT (*Present1) (IDXGISwapChain1* SwapChain, UINT SyncInterval, UINT Flags);
-return swapchain_hook->GetMethod<Present1>(8)(SwapChain, SyncInterval, Flags);
+  typedef HRESULT (*Present1) (IDXGISwapChain1* SwapChain, UINT SyncInterval, UINT Flags);
+  return swapchain_hook->GetMethod<Present1>(PRESENT_VTABLE_INDEX)(SwapChain, SyncInterval, Flags);
 }
 
 DWORD WINAPI InitializeHook(void* arguments) {
@@ -77,28 +99,29 @@ DWORD WINAPI InitializeHook(void* arguments) {
   SetWindowLongPtr(top_window_handle, GWLP_WNDPROC, (LONG_PTR)Hook);
 
   swapchain_hook = new utils::VtableHook(swapchain);
-  swapchain_hook->HookMethod(PresentHook, 8);
+  swapchain_hook->HookMethod(PresentHook, PRESENT_VTABLE_INDEX);
 
-  TextConsole::GetInstance().RegisterCommand("load", [](std::vector<std::string> cmd)
-  {
-	  if (!cmd.empty()) {
-		  std::wstring wdirectory = utils::GetModuleDirectory();
-		  std::string directory = ws2s(wdirectory);
-		  directory += "\\scripts\\";
-		  directory += cmd[1];
-		  lua::ScriptManager::GetInstance().LoadScript(directory);
-	  }
+  TextConsole::GetInstance().RegisterCommand("load", [](std::vector<std::string> cmd) {
+    if (!cmd.empty() && !cmd[1].empty()) {
+      lua::ScriptManager::GetInstance().LoadScript(GetScriptPath(cmd[1]));
+      TextConsole::GetInstance().AddLog("Loaded " + cmd[1]);
+    }
   });
 
-  TextConsole::GetInstance().RegisterCommand("unload", [](std::vector<std::string> cmd)
-  {
-	  if (!cmd.empty()) {
-		  std::wstring wdirectory = utils::GetModuleDirectory();
-		  std::string directory = ws2s(wdirectory);
-		  directory += "\\scripts\\";
-		  directory += cmd[1];
-		  lua::ScriptManager::GetInstance().UnloadScript(directory);
-	  }
+  TextConsole::GetInstance().RegisterCommand("unload", [](std::vector<std::string> cmd) {
+    if (!cmd.empty() && !cmd[1].empty()) {
+      lua::ScriptManager::GetInstance().UnloadScript(GetScriptPath(cmd[1]));
+      TextConsole::GetInstance().AddLog("Unloaded " + cmd[1]);
+    }
+  });
+
+  TextConsole::GetInstance().RegisterCommand("loadall", [](std::vector<std::string> cmd) {
+    LoadAllScripts();
+  });
+
+  TextConsole::GetInstance().RegisterCommand("unloadall", [](std::vector<std::string> cmd) {
+    lua::ScriptManager::GetInstance().UnloadScripts();
+    TextConsole::GetInstance().AddLog("Unloaded all");
   });
 
   return 1;

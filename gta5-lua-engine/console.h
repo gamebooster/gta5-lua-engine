@@ -50,6 +50,10 @@ public:
 		return (w == -1) ? buf_size : (size_t)w;
 	}
 
+  void AddLog(std::string log) {
+    AddLog(log.c_str());
+  }
+
 	void    AddLog(const char* fmt, ...)
 	{
 		if (items.size() > 30) ClearLog();
