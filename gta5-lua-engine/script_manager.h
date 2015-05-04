@@ -4,13 +4,6 @@
 #include <map>
 #include <string>
 
-#define COMPILE_BLADE_SCRIPTHOOK
-
-#ifdef COMPILE_BLADE_SCRIPTHOOK
-#include "..\gta5-blade-scripthook\include\main.h"
-#pragma comment(lib,"..\\gta5-blade-scripthook\\lib\\ScriptHookV.lib")
-#endif
-
 namespace lua {
 	class ManagedScriptThread : rage::ScriptThread {
 		typedef void(*callback_func)();

@@ -110,11 +110,15 @@ namespace lua {
 	ScriptManager::ScriptManager() {
 		InitializeCriticalSection(&lock_);
 		script_thread_.SetCallback(static_cast<void(*)()>([]() {
+#ifdef COMPILE_BLADE_SCRIPTHOOK
 			while (true)
 			{
 				ScriptManager::GetInstance().CallOnScriptThread();
-				WAIT(0);
+				scriptWait(0);
 			}
+#else
+			ScriptManager::GetInstance().CallOnScriptThread();
+#endif
 		}));
 	}
 

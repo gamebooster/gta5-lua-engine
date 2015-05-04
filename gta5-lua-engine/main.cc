@@ -5,6 +5,10 @@
 #include "script_manager.h"
 #include "..\gta5-scripthook\utils.h"
 
+#ifdef COMPILE_BLADE_SCRIPTHOOK
+#pragma comment(lib,"..\\gta5-blade-scripthook\\lib\\ScriptHookV.lib")
+#endif
+
 extern LRESULT ImGui_ImplDX11_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 static HANDLE thread = nullptr;

@@ -2946,7 +2946,12 @@ namespace lua {
 			.beginModule("system")
 
 			.addFunction("START_NEW_SCRIPT", &START_NEW_SCRIPT)
-			.addFunction("WAIT", &WAIT)
+			//.addFunction("WAIT", &WAIT)
+#ifdef COMPILE_BLADE_SCRIPTHOOK
+            .addFunction("WAIT", &scriptWait)
+#else
+    
+#endif
 			.endModule();
 	}
 
