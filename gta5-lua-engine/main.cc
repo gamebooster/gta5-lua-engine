@@ -38,40 +38,40 @@ static void LoadAllScripts() {
 }
 
 static LRESULT WINAPI Hook(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-	if (msg == WM_KEYDOWN && wParam == VK_OEM_3) {
-		draw_menu = !draw_menu;
-		*disable_gta_ui = draw_menu;
-		return true;
-	}
+  if (msg == WM_KEYDOWN && wParam == VK_OEM_3) {
+    draw_menu = !draw_menu;
+    *disable_gta_ui = draw_menu;
+    return true;
+  }
 
   if (msg == WM_KEYDOWN && wParam == VK_INSERT) {
     LoadAllScripts();
   }
 
-	if (msg == WM_KEYDOWN && wParam == VK_DELETE) {
-		lua::ScriptManager::GetInstance().ReloadScripts();
-	}
+  if (msg == WM_KEYDOWN && wParam == VK_DELETE) {
+    lua::ScriptManager::GetInstance().ReloadScripts();
+  }
 
-	if (draw_menu && ImGui_ImplDX11_WndProcHandler(hwnd, msg, wParam, lParam)) {
-		return true;
-	}
-	return CallWindowProcW(wndProc, hwnd, msg, wParam, lParam);
+  if (draw_menu && ImGui_ImplDX11_WndProcHandler(hwnd, msg, wParam, lParam)) {
+    return true;
+  }
+  return CallWindowProcW(wndProc, hwnd, msg, wParam, lParam);
 }
 
 HRESULT PresentHook(IDXGISwapChain1* SwapChain, UINT SyncInterval, UINT Flags) {
   if (draw_menu) {
-	  ImGui_ImplDX11_NewFrame();
+    ImGui_ImplDX11_NewFrame();
 
-	  ImGui::Begin("gta5-lua-engine by skomski");
-	  lua::ScriptManager::GetInstance().CallOnDrawTick();
-	  ImGui::End();
+    ImGui::Begin("gta5-lua-engine by skomski");
+    lua::ScriptManager::GetInstance().CallOnDrawTick();
+    ImGui::End();
 
-	  TextConsole::GetInstance().Run("Console", &draw_menu);
+    TextConsole::GetInstance().Run("Console", &draw_menu);
 
-	  ImGui::Render();
+    ImGui::Render();
   }
-	
-  typedef HRESULT (*Present1) (IDXGISwapChain1* SwapChain, UINT SyncInterval, UINT Flags);
+
+  typedef HRESULT(*Present1) (IDXGISwapChain1* SwapChain, UINT SyncInterval, UINT Flags);
   return swapchain_hook->GetMethod<Present1>(PRESENT_VTABLE_INDEX)(SwapChain, SyncInterval, Flags);
 }
 
@@ -128,18 +128,17 @@ DWORD WINAPI InitializeHook(void* arguments) {
 }
 
 void FinalizeHook() {
-	if (swapchain_hook) delete swapchain_hook;
-	SetWindowLongPtr(top_window_handle, GWLP_WNDPROC, (LONG_PTR)wndProc);
+  if (swapchain_hook) delete swapchain_hook;
+  SetWindowLongPtr(top_window_handle, GWLP_WNDPROC, (LONG_PTR)wndProc);
 }
 
 int WINAPI DllMain(HINSTANCE instance, DWORD reason, PVOID reserved) {
-	if (reason == DLL_PROCESS_ATTACH) {
-		thread = CreateThread(nullptr, 0, InitializeHook, 0, 0, nullptr);
-	}
-	else if (reason == DLL_PROCESS_DETACH) {
-		FinalizeHook();
-		WaitForSingleObject(thread, INFINITE);
-		CloseHandle(thread);
-	}
-	return 1;
+  if (reason == DLL_PROCESS_ATTACH) {
+    thread = CreateThread(nullptr, 0, InitializeHook, 0, 0, nullptr);
+  } else if (reason == DLL_PROCESS_DETACH) {
+    FinalizeHook();
+    WaitForSingleObject(thread, INFINITE);
+    CloseHandle(thread);
+  }
+  return 1;
 }
