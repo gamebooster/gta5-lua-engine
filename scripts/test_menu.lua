@@ -28,7 +28,14 @@ local counter = 0
 
 local test_overlay = false
 
+local is_host = false
+
+local displays = {}
+local MAX_PLAYERS = 32
+
 function OnScriptTick()
+  is_host = network.NETWORK_IS_HOST()
+
   if gui.KeyPressed(KEY_0) then
     player.SET_PLAYER_INVINCIBLE(player.PLAYER_ID(), 1)
     --test.SendTextMessage(player.PLAYER_ID(), '<img src="img://ClanTexture17801373_2/ClanTexture17801373_2">')
@@ -47,13 +54,31 @@ function OnScriptTick()
 	end
   end
   
-  if test_overlay then
-    ped.SET_PED_HEAD_OVERLAY(player.PLAYER_PED_ID(), 1, 0, 1)
-	ped.SET_PED_HEAD_OVERLAY(player.PLAYER_PED_ID(), 2, 0, 1)
-	ped.SET_PED_HEAD_OVERLAY(player.PLAYER_PED_ID(), 3, 0, 1)
-	ped.SET_PED_HEAD_OVERLAY(player.PLAYER_PED_ID(), 4, 0, 1)
-	ped.SET_PED_HEAD_OVERLAY(player.PLAYER_PED_ID(), 5, 0, 1)
-	ped.SET_PED_HEAD_OVERLAY(player.PLAYER_PED_ID(), 6, 0, 1)
+  if test_overlay or gui.KeyPressed(KEY_1) then
+  gameplay.SET_THIS_SCRIPT_CAN_REMOVE_BLIPS_CREATED_BY_ANY_SCRIPT(1)
+    --network_id = network.PARTICIPANT_ID_TO_INT()
+	
+	for i = 0, 32, 1 do
+      if player.GET_PLAYER_PED(i) > 0 and ui._ARE_HEAD_DISPLAYS_READY() then
+	  
+	  	local ped_id = player.GET_PLAYER_PED(i)
+		
+		if ui.GET_BLIP_FROM_ENTITY(ped_id) == 0 then
+			local blip_id = ui.ADD_BLIP_FOR_ENTITY(ped_id)
+			ui.SET_BLIP_SPRITE(blip_id, 1)
+			ui.SET_BLIP_SCALE(blip_id, 1)
+			ui.SET_BLIP_PRIORITY(blip_id, 13);
+			ui.SET_BLIP_NAME_TO_PLAYER_NAME(blip_id, i);
+			ui.SET_BLIP_ALPHA(blip_id, 255);
+		end
+
+	    local network_id = ui._CREATE_PED_HEAD_DISPLAY(player.GET_PLAYER_PED(i), "", 0, 0, "", 0)
+		ui._SET_HEAD_DISPLAY_STRING(network_id, player.GET_PLAYER_NAME(i))
+		ui._SET_HEAD_DISPLAY_FLAG(network_id, 0, 1)
+	    displays[i].active = ui._IS_HEAD_DISPLAY_ID_VALID(network_id)
+		displays[i].head_id = network_id
+	  end
+	end
   end
   
   if want_resurrect then
@@ -92,6 +117,11 @@ local changed = false
 local display_text = false
 
 function OnDrawTick()
+  if gui.BeginOverlay("Overlay", true, 10, 10, 0.3) then
+    gui.Text("ishost: " .. tostring(is_host))
+	gui.End()
+  end
+
   if gui.TreeNode("Test") then
   
     changed, slider_counter = gui.SliderInt("test", slider_counter, 0, 10)
@@ -106,6 +136,12 @@ function OnDrawTick()
 	
 	if gui.Button("test_overlay") then
 	  test_overlay = true
+	end
+	
+	for i = 0, MAX_PLAYERS, 1 do
+	  if gui.Selectable(tostring(i) .. " " .. tostring(displays[i].head_id), displays[i].selected) then
+	    displays[i].selected = not displays[i].selected
+	  end
 	end
 	
 	if gui.Button("Warp into near car") then
@@ -125,4 +161,9 @@ function OnDrawTick()
 end
 
 function Initialize()
+
+  for i = 0, MAX_PLAYERS, 1 do
+    displays[i] = {}
+	displays[i].selected = false
+  end
 end

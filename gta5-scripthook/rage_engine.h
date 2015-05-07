@@ -191,7 +191,7 @@ public:
 		// Configuration
 		enum
 		{
-			MaxNativeParams = 16,
+			MaxNativeParams = 26,
 			ArgSize = 8,
 		};
 

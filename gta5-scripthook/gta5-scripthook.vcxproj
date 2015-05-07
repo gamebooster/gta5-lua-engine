@@ -150,7 +150,6 @@
     <ClCompile Include="HookFunction.cpp" />
     <ClCompile Include="Hooking.cpp" />
     <ClCompile Include="Hooking.Patterns.cpp" />
-    <ClCompile Include="main.cc" />
     <ClCompile Include="rage_engine.cc" />
     <ClCompile Include="rage_script_hook.cc" />
     <ClCompile Include="utils.cc" />

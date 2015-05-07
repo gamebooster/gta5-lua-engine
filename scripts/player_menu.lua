@@ -9,6 +9,7 @@ local wants_into_car = false
 local wants_money = false
 local explode_car = false
 local wants_teleport_to = false
+local kick_player = false
 
 function OnScriptTick()
   for i = 0, MAX_PLAYERS, 1 do
@@ -46,6 +47,10 @@ function OnScriptTick()
 		--chosen = vehicle.IS_VEHICLE_SEAT_FREE(vehicle_id, -1)
         ai.TASK_WARP_PED_INTO_VEHICLE(player.PLAYER_PED_ID(), last_vehicle_id, -1)
 	  end
+	  
+	  if players[i].selected and kick_player then
+	    network.NETWORK_SESSION_KICK_PLAYER(i)
+	  end
 
 	  if players[i].selected and wants_money then
 	    local vec = entity.GET_ENTITY_COORDS(player.GET_PLAYER_PED(i), 1)
@@ -66,6 +71,7 @@ function OnScriptTick()
   wants_into_car = false
   explode_car = false
   wants_teleport_to = false
+  kick_player = false
 end
 
 function OnDrawTick()
@@ -89,6 +95,9 @@ function OnDrawTick()
 	gui.SameLine()
 	if gui.Button("Explode car") then
 	  explode_car = true
+	end
+	if gui.Button("Kick player") then
+	  kick_player = true
 	end
 	players_filter:Draw("Filter", -1)
 	for i = 0, MAX_PLAYERS, 1 do

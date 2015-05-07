@@ -88,13 +88,13 @@ namespace PLAYER
 	static BOOL GET_PLAYER_TARGET_ENTITY(uint32_t p0, uint32_t *p1) { return rage::NativeInvoke::Invoke<0xF35BC786336308F5, BOOL>(p0, p1); } // F35BC786336308F5 F6AAA2D7
 	static BOOL IS_PLAYER_FREE_AIMING(uint32_t p0) { return rage::NativeInvoke::Invoke<0xAD26E3EB5603F99C, BOOL>(p0); } // AD26E3EB5603F99C 1DEC67B7
 	static BOOL IS_PLAYER_FREE_AIMING_AT_ENTITY(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0xB89DCD342FB7AC95, BOOL>(p0, p1); } // B89DCD342FB7AC95 7D80EEAA
-	static BOOL _0x8FF35E6057D45161(uint32_t p0, uint32_t *p1) { return rage::NativeInvoke::Invoke<0x8FF35E6057D45161, BOOL>(p0, p1); } // 8FF35E6057D45161 8866D9D0
+	static BOOL _GET_AIMED_ENTITY(uint32_t p0, uint32_t *entity) { return rage::NativeInvoke::Invoke<0x8FF35E6057D45161, BOOL>(p0, entity); } // 8FF35E6057D45161 8866D9D0
 	static void _0xB558094C81091C67(uint32_t p0, float p1) { rage::NativeInvoke::Invoke<0xB558094C81091C67, uint32_t>(p0, p1); } // B558094C81091C67 74D42C03
 	static void SET_PLAYER_CAN_DO_DRIVE_BY(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x364C7B6EFAC33A0, uint32_t>(p0, p1); } // 364C7B6EFAC33A0 F4D99685
 	static void SET_PLAYER_CAN_BE_HASSLED_BY_GANGS(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0xAA919F0D192F1F06, uint32_t>(p0, p1); } // AA919F0D192F1F06 71B305BB
 	static void SET_PLAYER_CAN_USE_COVER(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0xEE994C7E42032A88, uint32_t>(p0, p1); } // EE994C7E42032A88 13CAFAFA
 	static uint32_t GET_MAX_WANTED_LEVEL() { return rage::NativeInvoke::Invoke<0xB916C06719AE0212, uint32_t>(); } // B916C06719AE0212 457F1E44
-	static BOOL IS_PLAYER_TARGETTING_uint32_tTHING(uint32_t p0) { return rage::NativeInvoke::Invoke<0xED0A2A3FDC3E3728, BOOL>(p0); } // ED0A2A3FDC3E3728 456DB50D
+	static BOOL IS_PLAYER_TARGETTING_ANYTHING(uint32_t p0) { return rage::NativeInvoke::Invoke<0xED0A2A3FDC3E3728, BOOL>(p0); } // ED0A2A3FDC3E3728 456DB50D
 	static void SET_PLAYER_SPRINT(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0xE464B534EE3DDD9B, uint32_t>(p0, p1); } // E464B534EE3DDD9B 7DD7900C
 	static void RESET_PLAYER_STAMINA(uint32_t p0) { rage::NativeInvoke::Invoke<0x34320D73366F471A, uint32_t>(p0); } // 34320D73366F471A C0445A9C
 	static void RESTORE_PLAYER_STAMINA(uint32_t p0, float p1) { rage::NativeInvoke::Invoke<0xD10E47A64E6B7BA9, uint32_t>(p0, p1); } // D10E47A64E6B7BA9 62A93608
@@ -247,13 +247,13 @@ namespace ENTITY
 	static BOOL DOES_ENTITY_HAVE_DRAWABLE(uint32_t p0) { return rage::NativeInvoke::Invoke<0x0FBE2EB4D474675FC, BOOL>(p0); } // 0FBE2EB4D474675FC A5B33300
 	static BOOL DOES_ENTITY_HAVE_PHYSICS(uint32_t p0) { return rage::NativeInvoke::Invoke<0x2E0F030186A261D3, BOOL>(p0); } // 2E0F030186A261D3 9BCD2979
 	static BOOL HAS_ENTITY_ANIM_FINISHED(uint32_t p0, uint32_t *p1, uint32_t *p2, uint32_t p3) { return rage::NativeInvoke::Invoke<0xD58C0ABFAF258340, BOOL>(p0, p1, p2, p3); } // D58C0ABFAF258340 1D9CAB92
-	static BOOL HAS_ENTITY_BEEN_DAMAGED_BY_uint32_t_OBJECT(uint32_t p0) { return rage::NativeInvoke::Invoke<0x43827D6447B61FA0, BOOL>(p0); } // 43827D6447B61FA0 6B74582E
-	static BOOL HAS_ENTITY_BEEN_DAMAGED_BY_uint32_t_PED(uint32_t p0) { return rage::NativeInvoke::Invoke<0x6B91ED8EB0DE484, BOOL>(p0); } // 6B91ED8EB0DE484 53FD4A25
-	static BOOL HAS_ENTITY_BEEN_DAMAGED_BY_uint32_t_VEHICLE(uint32_t p0) { return rage::NativeInvoke::Invoke<0x87F7B968CB47182, BOOL>(p0); } // 87F7B968CB47182 878C2CE0
+	static BOOL HAS_ENTITY_BEEN_DAMAGED_BY_ANY_OBJECT(uint32_t p0) { return rage::NativeInvoke::Invoke<0x43827D6447B61FA0, BOOL>(p0); } // 43827D6447B61FA0 6B74582E
+	static BOOL HAS_ENTITY_BEEN_DAMAGED_BY_ANY_PED(uint32_t p0) { return rage::NativeInvoke::Invoke<0x6B91ED8EB0DE484, BOOL>(p0); } // 6B91ED8EB0DE484 53FD4A25
+	static BOOL HAS_ENTITY_BEEN_DAMAGED_BY_ANY_VEHICLE(uint32_t p0) { return rage::NativeInvoke::Invoke<0x87F7B968CB47182, BOOL>(p0); } // 87F7B968CB47182 878C2CE0
 	static BOOL HAS_ENTITY_BEEN_DAMAGED_BY_ENTITY(uint32_t p0, uint32_t p1, BOOL p2) { return rage::NativeInvoke::Invoke<0x6255AE2591FE7603, BOOL>(p0, p1, p2); } // 6255AE2591FE7603 07FC77E0
 	static BOOL HAS_ENTITY_CLEAR_LOS_TO_ENTITY(uint32_t p0, uint32_t p1, uint32_t p2) { return rage::NativeInvoke::Invoke<0x15DEAA4402D18301, BOOL>(p0, p1, p2); } // 15DEAA4402D18301 53576FA7
 	static BOOL HAS_ENTITY_CLEAR_LOS_TO_ENTITY_IN_FRONT(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0x0B4D3CFD952BEB647, BOOL>(p0, p1); } // 0B4D3CFD952BEB647 210D87C8
-	static BOOL HAS_ENTITY_COLLIDED_WITH_uint32_tTHING(uint32_t p0) { return rage::NativeInvoke::Invoke<0x5800F5EE75107519, BOOL>(p0); } // 5800F5EE75107519 662A2F41
+	static BOOL HAS_ENTITY_COLLIDED_WITH_ANYTHING(uint32_t p0) { return rage::NativeInvoke::Invoke<0x5800F5EE75107519, BOOL>(p0); } // 5800F5EE75107519 662A2F41
 	static uint32_t _0xE8F096AC1F064558(uint32_t p0) { return rage::NativeInvoke::Invoke<0xE8F096AC1F064558, uint32_t>(p0); } // E8F096AC1F064558 C0E3AA47
 	static Vector3 _0xAA24F621DD65AB7(uint32_t p0) { return rage::NativeInvoke::Invoke<0xAA24F621DD65AB7, Vector3>(p0); } // AA24F621DD65AB7 AB415C07
 	static void _0x4A99017CF06B75D9(uint32_t p0) { rage::NativeInvoke::Invoke<0x4A99017CF06B75D9, uint32_t>(p0); } // 4A99017CF06B75D9 58D9775F
@@ -301,9 +301,9 @@ namespace ENTITY
 	static BOOL IS_ENTITY_AT_COORD(uint32_t p0, float p1, float p2, float p3, float p4, float p5, float p6, BOOL p7, BOOL p8, uint32_t p9) { return rage::NativeInvoke::Invoke<0x594EB70937EC1486, BOOL>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9); } // 594EB70937EC1486 D749B606
 	static BOOL IS_ENTITY_AT_ENTITY(uint32_t p0, uint32_t p1, float p2, float p3, float p4, BOOL p5, BOOL p6, uint32_t p7) { return rage::NativeInvoke::Invoke<0x2F406E91B59DB558, BOOL>(p0, p1, p2, p3, p4, p5, p6, p7); } // 2F406E91B59DB558 DABDCB52
 	static BOOL IS_ENTITY_ATTACHED(uint32_t p0) { return rage::NativeInvoke::Invoke<0xDF75DAAACD32E49E, BOOL>(p0); } // DF75DAAACD32E49E EC1479D5
-	static BOOL IS_ENTITY_ATTACHED_TO_uint32_t_OBJECT(uint32_t p0) { return rage::NativeInvoke::Invoke<0xB150B4C4A9FFA174, BOOL>(p0); } // B150B4C4A9FFA174 0B5DE340
-	static BOOL IS_ENTITY_ATTACHED_TO_uint32_t_PED(uint32_t p0) { return rage::NativeInvoke::Invoke<0x42B70344077B22B9, BOOL>(p0); } // 42B70344077B22B9 9D7A609C
-	static BOOL IS_ENTITY_ATTACHED_TO_uint32_t_VEHICLE(uint32_t p0) { return rage::NativeInvoke::Invoke<0xB9D0211AF48761E5, BOOL>(p0); } // B9D0211AF48761E5 DE5C995E
+	static BOOL IS_ENTITY_ATTACHED_TO_ANY_OBJECT(uint32_t p0) { return rage::NativeInvoke::Invoke<0xB150B4C4A9FFA174, BOOL>(p0); } // B150B4C4A9FFA174 0B5DE340
+	static BOOL IS_ENTITY_ATTACHED_TO_ANY_PED(uint32_t p0) { return rage::NativeInvoke::Invoke<0x42B70344077B22B9, BOOL>(p0); } // 42B70344077B22B9 9D7A609C
+	static BOOL IS_ENTITY_ATTACHED_TO_ANY_VEHICLE(uint32_t p0) { return rage::NativeInvoke::Invoke<0xB9D0211AF48761E5, BOOL>(p0); } // B9D0211AF48761E5 DE5C995E
 	static BOOL IS_ENTITY_ATTACHED_TO_ENTITY(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0x21F34311BCDA79B9, BOOL>(p0, p1); } // 21F34311BCDA79B9 B0ABFEA8
 	static BOOL IS_ENTITY_DEAD(uint32_t p0) { return rage::NativeInvoke::Invoke<0xE5D56342B0FF1D0D, BOOL>(p0); } // E5D56342B0FF1D0D B6F7CBAC
 	static BOOL IS_ENTITY_IN_AIR(uint32_t p0) { return rage::NativeInvoke::Invoke<0xF97DDB74A78F6500, BOOL>(p0); } // F97DDB74A78F6500 A4157987
@@ -409,7 +409,7 @@ namespace PED
 	static void _0x89A1CAD126A6BDE2(uint32_t p0, uint32_t p1) { rage::NativeInvoke::Invoke<0x89A1CAD126A6BDE2, uint32_t>(p0, p1); } // 89A1CAD126A6BDE2 FC70EEC7
 	static BOOL IS_PED_IN_VEHICLE(uint32_t p0, uint32_t p1, BOOL p2) { return rage::NativeInvoke::Invoke<0x53170344050F2301, BOOL>(p0, p1, p2); } // 53170344050F2301 7DA6BC83
 	static BOOL IS_PED_IN_MODEL(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0x70955799BE2F456F, BOOL>(p0, p1); } // 70955799BE2F456F A6438D4B
-	static BOOL IS_PED_IN_uint32_t_VEHICLE(uint32_t p0, BOOL p1) { return rage::NativeInvoke::Invoke<0x2A24448FF232F834, BOOL>(p0, p1); } // 2A24448FF232F834 3B0171EE
+	static BOOL IS_PED_IN_ANY_VEHICLE(uint32_t p0, BOOL p1) { return rage::NativeInvoke::Invoke<0x2A24448FF232F834, BOOL>(p0, p1); } // 2A24448FF232F834 3B0171EE
 	static BOOL IS_COP_PED_IN_AREA_3D(float p0, float p1, float p2, float p3, float p4, float p5) { return rage::NativeInvoke::Invoke<0x2ECF6DFC75F222F2, BOOL>(p0, p1, p2, p3, p4, p5); } // 2ECF6DFC75F222F2 B98DB96B
 	static BOOL IS_PED_INJURED(uint32_t p0) { return rage::NativeInvoke::Invoke<0x9F94F2CFDCA78C55, BOOL>(p0); } // 9F94F2CFDCA78C55 2530A087
 	static BOOL IS_PED_HURT(uint32_t p0) { return rage::NativeInvoke::Invoke<0xD074306FB8714BD2, BOOL>(p0); } // D074306FB8714BD2 69DFA0AF
@@ -426,7 +426,7 @@ namespace PED
 	static BOOL IS_PED_IN_MELEE_COMBAT(uint32_t p0) { return rage::NativeInvoke::Invoke<0x6A5400407F3E1292, BOOL>(p0); } // 6A5400407F3E1292 FD7814A5
 	static BOOL IS_PED_STOPPED(uint32_t p0) { return rage::NativeInvoke::Invoke<0x3428BABF05B108EE, BOOL>(p0); } // 3428BABF05B108EE A0DC0B87
 	static BOOL IS_PED_SHOOTING_IN_AREA(uint32_t p0, float p1, float p2, float p3, float p4, float p5, float p6, BOOL p7, BOOL p8) { return rage::NativeInvoke::Invoke<0xEE9A290405B6083, BOOL>(p0, p1, p2, p3, p4, p5, p6, p7, p8); } // EE9A290405B6083 741BF04F
-	static BOOL IS_uint32_t_PED_SHOOTING_IN_AREA(float p0, float p1, float p2, float p3, float p4, float p5, BOOL p6, BOOL p7) { return rage::NativeInvoke::Invoke<0x4FD2063004E8875E, BOOL>(p0, p1, p2, p3, p4, p5, p6, p7); } // 4FD2063004E8875E 91833867
+	static BOOL IS_ANY_PED_SHOOTING_IN_AREA(float p0, float p1, float p2, float p3, float p4, float p5, BOOL p6, BOOL p7) { return rage::NativeInvoke::Invoke<0x4FD2063004E8875E, BOOL>(p0, p1, p2, p3, p4, p5, p6, p7); } // 4FD2063004E8875E 91833867
 	static BOOL IS_PED_SHOOTING(uint32_t p0) { return rage::NativeInvoke::Invoke<0xEB4AE93098956715, BOOL>(p0); } // EB4AE93098956715 E7C3405E
 	static void SET_PED_ACCURACY(uint32_t p0, uint32_t p1) { rage::NativeInvoke::Invoke<0xE7962295F4C99484, uint32_t>(p0, p1); } // E7962295F4C99484 6C17122E
 	static uint32_t GET_PED_ACCURACY(uint32_t p0) { return rage::NativeInvoke::Invoke<0x87769EF841855C53, uint32_t>(p0); } // 87769EF841855C53 0A2A0AA0
@@ -468,15 +468,15 @@ namespace PED
 	static void SET_PED_SUFFERS_CRITICAL_HITS(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x24C9F79D6E9E61A8, uint32_t>(p0, p1); } // 24C9F79D6E9E61A8 6F6FC7E6
 	static void _0xEA418A40A17769F3(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0xEA418A40A17769F3, uint32_t>(p0, p1); } // EA418A40A17769F3 1572022A
 	static BOOL IS_PED_SITTING_IN_VEHICLE(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0x764E7360C13E7383, BOOL>(p0, p1); } // 764E7360C13E7383 DDDE26FA
-	static BOOL IS_PED_SITTING_IN_uint32_t_VEHICLE(uint32_t p0) { return rage::NativeInvoke::Invoke<0x2E177F2B797A4A34, BOOL>(p0); } // 2E177F2B797A4A34 0EA9CA03
+	static BOOL IS_PED_SITTING_IN_ANY_VEHICLE(uint32_t p0) { return rage::NativeInvoke::Invoke<0x2E177F2B797A4A34, BOOL>(p0); } // 2E177F2B797A4A34 0EA9CA03
 	static BOOL IS_PED_ON_FOOT(uint32_t p0) { return rage::NativeInvoke::Invoke<0x073B082A8BFC119BA, BOOL>(p0); } // 073B082A8BFC119BA C60D0785
-	static BOOL IS_PED_ON_uint32_t_BIKE(uint32_t p0) { return rage::NativeInvoke::Invoke<0x9331412F1452086E, BOOL>(p0); } // 9331412F1452086E 4D885B2E
+	static BOOL IS_PED_ON_ANY_BIKE(uint32_t p0) { return rage::NativeInvoke::Invoke<0x9331412F1452086E, BOOL>(p0); } // 9331412F1452086E 4D885B2E
 	static BOOL IS_PED_PLANTING_BOMB(uint32_t p0) { return rage::NativeInvoke::Invoke<0xA43F7819FA056045, BOOL>(p0); } // A43F7819FA056045 0EDAC574
 	static Vector3 GET_DEAD_PED_PICKUP_COORDS(uint32_t p0, float p1, float p2) { return rage::NativeInvoke::Invoke<0x19FA4BF61837E14, Vector3>(p0, p1, p2); } // 19FA4BF61837E14 129F9DC1
-	static BOOL IS_PED_IN_uint32_t_BOAT(uint32_t p0) { return rage::NativeInvoke::Invoke<0x70A314BA86AFCBFA, BOOL>(p0); } // 70A314BA86AFCBFA 1118A947
-	static BOOL IS_PED_IN_uint32_t_SUB(uint32_t p0) { return rage::NativeInvoke::Invoke<0x202FB250328FD056, BOOL>(p0); } // 202FB250328FD056 E65F8059
-	static BOOL IS_PED_IN_uint32_t_HELI(uint32_t p0) { return rage::NativeInvoke::Invoke<0xD7475AE87197B442, BOOL>(p0); } // D7475AE87197B442 7AB5523B
-	static BOOL IS_PED_IN_uint32_t_PLANE(uint32_t p0) { return rage::NativeInvoke::Invoke<0x2910F2A2D77BD576, BOOL>(p0); } // 2910F2A2D77BD576 51BBCE7E
+	static BOOL IS_PED_IN_ANY_BOAT(uint32_t p0) { return rage::NativeInvoke::Invoke<0x70A314BA86AFCBFA, BOOL>(p0); } // 70A314BA86AFCBFA 1118A947
+	static BOOL IS_PED_IN_ANY_SUB(uint32_t p0) { return rage::NativeInvoke::Invoke<0x202FB250328FD056, BOOL>(p0); } // 202FB250328FD056 E65F8059
+	static BOOL IS_PED_IN_ANY_HELI(uint32_t p0) { return rage::NativeInvoke::Invoke<0xD7475AE87197B442, BOOL>(p0); } // D7475AE87197B442 7AB5523B
+	static BOOL IS_PED_IN_ANY_PLANE(uint32_t p0) { return rage::NativeInvoke::Invoke<0x2910F2A2D77BD576, BOOL>(p0); } // 2910F2A2D77BD576 51BBCE7E
 	static BOOL IS_PED_IN_FLYING_VEHICLE(uint32_t p0) { return rage::NativeInvoke::Invoke<0x7E94D7B1F9207611, BOOL>(p0); } // 7E94D7B1F9207611 CA072485
 	static void SET_PED_DIES_IN_WATER(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x89A2F145B2FE98D8, uint32_t>(p0, p1); } // 89A2F145B2FE98D8 604C872B
 	static void SET_PED_DIES_IN_SINKING_VEHICLE(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0xDB5B109FE6F6023F, uint32_t>(p0, p1); } // DB5B109FE6F6023F 8D4D9ABB
@@ -495,7 +495,7 @@ namespace PED
 	static void SET_PED_CAN_BE_TARGETTED_BY_PLAYER(uint32_t p0, uint32_t p1, BOOL p2) { rage::NativeInvoke::Invoke<0xF9F87CD8FFA68EB5, uint32_t>(p0, p1, p2); } // F9F87CD8FFA68EB5 D050F490
 	static void _0x03718A4AEDC5A9465(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x03718A4AEDC5A9465, uint32_t>(p0, p1); } // 03718A4AEDC5A9465 7DA12905
 	static void SET_TIME_EXCLUSIVE_DISPLAY_TEXTURE(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x747D7F0B1E7077E2, uint32_t>(p0, p1); } // 747D7F0B1E7077E2 7F67671D
-	static BOOL IS_PED_IN_uint32_t_POLICE_VEHICLE(uint32_t p0) { return rage::NativeInvoke::Invoke<0x098DA9B25A89BC9B9, BOOL>(p0); } // 098DA9B25A89BC9B9 84FA790D
+	static BOOL IS_PED_IN_ANY_POLICE_VEHICLE(uint32_t p0) { return rage::NativeInvoke::Invoke<0x098DA9B25A89BC9B9, BOOL>(p0); } // 098DA9B25A89BC9B9 84FA790D
 	static void _0x6C511493C5ADBC5C(uint32_t p0) { rage::NativeInvoke::Invoke<0x6C511493C5ADBC5C, uint32_t>(p0); } // 6C511493C5ADBC5C A819680B
 	static BOOL _0xB42AA529845BA2A3(uint32_t p0) { return rage::NativeInvoke::Invoke<0xB42AA529845BA2A3, BOOL>(p0); } // B42AA529845BA2A3 CD71F11B
 	static BOOL IS_PED_FALLING(uint32_t p0) { return rage::NativeInvoke::Invoke<0xC9A89245EC1B2DDF, BOOL>(p0); } // C9A89245EC1B2DDF ABF77334
@@ -511,7 +511,7 @@ namespace PED
 	static void _0xBF4E3DD8A4D67CE0(uint32_t p0, uint32_t p1) { rage::NativeInvoke::Invoke<0xBF4E3DD8A4D67CE0, uint32_t>(p0, p1); } // BF4E3DD8A4D67CE0 177EFC79
 	static void SET_PED_DUCKING(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x0C23E5B0130192B40, uint32_t>(p0, p1); } // 0C23E5B0130192B40 B90353D7
 	static BOOL IS_PED_DUCKING(uint32_t p0) { return rage::NativeInvoke::Invoke<0xB0680605FE40CDC9, BOOL>(p0); } // B0680605FE40CDC9 9199C77D
-	static BOOL IS_PED_IN_uint32_t_TAXI(uint32_t p0) { return rage::NativeInvoke::Invoke<0x7AA4BD1E05DEDC0E, BOOL>(p0); } // 7AA4BD1E05DEDC0E 16FD386C
+	static BOOL IS_PED_IN_ANY_TAXI(uint32_t p0) { return rage::NativeInvoke::Invoke<0x7AA4BD1E05DEDC0E, BOOL>(p0); } // 7AA4BD1E05DEDC0E 16FD386C
 	static void SET_PED_ID_RANGE(uint32_t p0, float p1) { rage::NativeInvoke::Invoke<0x6ED0D84DD08E49FE, uint32_t>(p0, p1); } // 6ED0D84DD08E49FE EF3B4ED9
 	static void _0x7662811443D31A6(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x7662811443D31A6, uint32_t>(p0, p1); } // 7662811443D31A6 9A2180FF
 	static void _0x991C39C1927E1A8C(uint32_t p0, float p1) { rage::NativeInvoke::Invoke<0x991C39C1927E1A8C, uint32_t>(p0, p1); } // 991C39C1927E1A8C F30658D2
@@ -611,7 +611,7 @@ namespace PED
 	static BOOL CAN_CREATE_RANDOM_COPS() { return rage::NativeInvoke::Invoke<0xBB524B1990FB9D50, BOOL>(); } // BB524B1990FB9D50 AA73DAD9
 	static void SET_PED_AS_ENEMY(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x015DE8332B7C67C99, uint32_t>(p0, p1); } // 015DE8332B7C67C99 AE620A1B
 	static void SET_PED_CAN_SMASH_GLASS(uint32_t p0, BOOL p1, BOOL p2) { rage::NativeInvoke::Invoke<0xEE0C58B9B0B4B427, uint32_t>(p0, p1, p2); } // EE0C58B9B0B4B427 149C60A8
-	static BOOL IS_PED_IN_uint32_t_TRAIN(uint32_t p0) { return rage::NativeInvoke::Invoke<0xA94EC3763C55FF12, BOOL>(p0); } // A94EC3763C55FF12 759EF63A
+	static BOOL IS_PED_IN_ANY_TRAIN(uint32_t p0) { return rage::NativeInvoke::Invoke<0xA94EC3763C55FF12, BOOL>(p0); } // A94EC3763C55FF12 759EF63A
 	static BOOL IS_PED_GETTING_INTO_A_VEHICLE(uint32_t p0) { return rage::NativeInvoke::Invoke<0xADFF42956B1E6E0F, BOOL>(p0); } // ADFF42956B1E6E0F 90E805AC
 	static BOOL IS_PED_TRYING_TO_ENTER_A_LOCKED_VEHICLE(uint32_t p0) { return rage::NativeInvoke::Invoke<0xED261CE09A6522AE, BOOL>(p0); } // ED261CE09A6522AE 46828B4E
 	static void SET_ENABLE_HANDCUFFS(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x5E3892A28C879327, uint32_t>(p0, p1); } // 5E3892A28C879327 AC9BBA23
@@ -751,7 +751,7 @@ namespace PED
 	static void REMOVE_SCENARIO_BLOCKING_AREA(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x1D6153ECFEB26B2A, uint32_t>(p0, p1); } // 1D6153ECFEB26B2A 4483EF06
 	static void SET_SCENARIO_PEDS_SPAWN_IN_SPHERE_AREA(uint32_t p0, uint32_t p1, uint32_t p2, uint32_t p3, uint32_t p4) { rage::NativeInvoke::Invoke<0x4F625D364D2B9F19, uint32_t>(p0, p1, p2, p3, p4); } // 4F625D364D2B9F19 80EAD297
 	static BOOL IS_PED_USING_SCENARIO(uint32_t p0, uint32_t *p1) { return rage::NativeInvoke::Invoke<0x9DC0AD9091504FA7, BOOL>(p0, p1); } // 9DC0AD9091504FA7 0F65B0D4
-	static BOOL IS_PED_USING_uint32_t_SCENARIO(uint32_t p0) { return rage::NativeInvoke::Invoke<0xF5FF2C22C19B44, BOOL>(p0); } // F5FF2C22C19B44 195EF5B7
+	static BOOL IS_PED_USING_ANY_SCENARIO(uint32_t p0) { return rage::NativeInvoke::Invoke<0xF5FF2C22C19B44, BOOL>(p0); } // F5FF2C22C19B44 195EF5B7
 	static uint32_t _0x1833FF6277164617(uint32_t p0, uint32_t p1, uint32_t p2, uint32_t p3) { return rage::NativeInvoke::Invoke<0x1833FF6277164617, uint32_t>(p0, p1, p2, p3); } // 1833FF6277164617 59DE73AC
 	static void _0x7B29EE2823C23A24(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x7B29EE2823C23A24, uint32_t>(p0, p1); } // 7B29EE2823C23A24 C08FE5F6
 	static uint32_t _0x9B087072254B8A12(uint32_t p0, uint32_t p1, uint32_t p2, uint32_t p3) { return rage::NativeInvoke::Invoke<0x9B087072254B8A12, uint32_t>(p0, p1, p2, p3); } // 9B087072254B8A12 58C0F6CF
@@ -793,7 +793,7 @@ namespace PED
 	static BOOL IS_PED_EVASIVE_DIVING(uint32_t p0, uint32_t *p1) { return rage::NativeInvoke::Invoke<0xFEAC7116B533A693, BOOL>(p0, p1); } // FEAC7116B533A693 D82829DC
 	static void SET_PED_SHOOTS_AT_COORD(uint32_t p0, float p1, float p2, float p3, BOOL p4) { rage::NativeInvoke::Invoke<0x478A9894800A2A4F, uint32_t>(p0, p1, p2, p3, p4); } // 478A9894800A2A4F FD64EAE5
 	static void SET_PED_MODEL_IS_SUPPRESSED(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0xF45D0029FDDF5279, uint32_t>(p0, p1); } // F45D0029FDDF5279 7820CA43
-	static void STOP_uint32_t_PED_MODEL_BEING_SUPPRESSED() { rage::NativeInvoke::Invoke<0x28EE726AD82D5B4D, uint32_t>(); } // 28EE726AD82D5B4D 5AD7DC55
+	static void STOP_ANY_PED_MODEL_BEING_SUPPRESSED() { rage::NativeInvoke::Invoke<0x28EE726AD82D5B4D, uint32_t>(); } // 28EE726AD82D5B4D 5AD7DC55
 	static void SET_PED_CAN_BE_TARGETED_WHEN_INJURED(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0xC45B64BD76E013C6, uint32_t>(p0, p1); } // C45B64BD76E013C6 6FD9A7CD
 	static void SET_PED_GENERATES_DEAD_BODY_EVENTS(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x99B5AF64F0734BCA, uint32_t>(p0, p1); } // 99B5AF64F0734BCA E9B97A2B
 	static void _0xCEAA0D0206013959(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0xCEAA0D0206013959, uint32_t>(p0, p1); } // CEAA0D0206013959 FF1F6AEB
@@ -845,7 +845,7 @@ namespace PED
 	static void _0xB1A5EE596FA70701(uint32_t p0) { rage::NativeInvoke::Invoke<0xB1A5EE596FA70701, uint32_t>(p0); } // B1A5EE596FA70701 59C52BE6
 	static void _0x3800D5410449A653(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x3800D5410449A653, uint32_t>(p0, p1); } // 3800D5410449A653 1D87DDC1
 	static void _0x3FE396202873263B(uint32_t p0) { rage::NativeInvoke::Invoke<0x3FE396202873263B, uint32_t>(p0); } // 3FE396202873263B B52BA5F5
-	static BOOL IS_uint32_t_PED_NEAR_POINT(float p0, float p1, float p2, float p3) { return rage::NativeInvoke::Invoke<0x098DDD45D8A6467D0, BOOL>(p0, p1, p2, p3); } // 098DDD45D8A6467D0 FBD9B050
+	static BOOL IS_ANY_PED_NEAR_POINT(float p0, float p1, float p2, float p3) { return rage::NativeInvoke::Invoke<0x098DDD45D8A6467D0, BOOL>(p0, p1, p2, p3); } // 098DDD45D8A6467D0 FBD9B050
 	static void _0x243553B40CC46CFE(uint32_t p0, BOOL p1, BOOL p2) { rage::NativeInvoke::Invoke<0x243553B40CC46CFE, uint32_t>(p0, p1, p2); } // 243553B40CC46CFE 187B9070
 	static BOOL _0x6A55FEB8D0A8F5D1(uint32_t p0, float p1, float p2, float p3, float p4) { return rage::NativeInvoke::Invoke<0x6A55FEB8D0A8F5D1, BOOL>(p0, p1, p2, p3, p4); } // 6A55FEB8D0A8F5D1 45037B9B
 	static void _0xF4127D3DAB8D011F(uint32_t p0) { rage::NativeInvoke::Invoke<0xF4127D3DAB8D011F, uint32_t>(p0); } // F4127D3DAB8D011F 840D24D3
@@ -1225,7 +1225,7 @@ namespace VEHICLE
 	static void _0xCB627690F1A36612(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0xCB627690F1A36612, uint32_t>(p0, p1); } // CB627690F1A36612 95A9ACCB
 	static void _0xF14E53754BC84C29(uint32_t p0, uint32_t p1) { rage::NativeInvoke::Invoke<0xF14E53754BC84C29, uint32_t>(p0, p1); } // F14E53754BC84C29 24F873FB
 	static uint32_t _0x91068745EF3E0ADA(uint32_t p0) { return rage::NativeInvoke::Invoke<0x91068745EF3E0ADA, uint32_t>(p0); } // 91068745EF3E0ADA A6F02670
-	static BOOL IS_uint32_t_VEHICLE_NEAR_POINT(float p0, float p1, float p2, float p3) { return rage::NativeInvoke::Invoke<0x1DB23BF4B2FFF9BA, BOOL>(p0, p1, p2, p3); } // 1DB23BF4B2FFF9BA 2867A834
+	static BOOL IS_ANY_VEHICLE_NEAR_POINT(float p0, float p1, float p2, float p3) { return rage::NativeInvoke::Invoke<0x1DB23BF4B2FFF9BA, BOOL>(p0, p1, p2, p3); } // 1DB23BF4B2FFF9BA 2867A834
 	static void REQUEST_VEHICLE_HIGH_DETAIL_MODEL(uint32_t p0) { rage::NativeInvoke::Invoke<0x3D9568341F46CF22, uint32_t>(p0); } // 3D9568341F46CF22 9DA21956
 	static void REMOVE_VEHICLE_HIGH_DETAIL_MODEL(uint32_t p0) { rage::NativeInvoke::Invoke<0x0014087AABE70E6BE4, uint32_t>(p0); } // 0014087AABE70E6BE4 382BE070
 	static BOOL IS_VEHICLE_HIGH_DETAIL(uint32_t p0) { return rage::NativeInvoke::Invoke<0xA8F27B4255BFFE1F, BOOL>(p0); } // A8F27B4255BFFE1F 55D41928
@@ -1235,7 +1235,7 @@ namespace VEHICLE
 	static void _0xBFA9FE814D364BC5(uint32_t p0, float p1) { rage::NativeInvoke::Invoke<0xBFA9FE814D364BC5, uint32_t>(p0, p1); } // BFA9FE814D364BC5 88236E22
 	static void ATTACH_VEHICLE_TO_TOW_TRUCK(uint32_t p0, uint32_t p1, uint32_t p2, float p3, float p4, float p5) { rage::NativeInvoke::Invoke<0x1511BF52ECA48F55, uint32_t>(p0, p1, p2, p3, p4, p5); } // 1511BF52ECA48F55 8151571A
 	static void DETACH_VEHICLE_FROM_TOW_TRUCK(uint32_t p0, uint32_t p1) { rage::NativeInvoke::Invoke<0xE1B462BF1EEE86A3, uint32_t>(p0, p1); } // E1B462BF1EEE86A3 C666CF33
-	static BOOL DETACH_VEHICLE_FROM_uint32_t_TOW_TRUCK(uint32_t p0) { return rage::NativeInvoke::Invoke<0xA1593D2D8A42357B, BOOL>(p0); } // A1593D2D8A42357B 3BF93651
+	static BOOL DETACH_VEHICLE_FROM_ANY_TOW_TRUCK(uint32_t p0) { return rage::NativeInvoke::Invoke<0xA1593D2D8A42357B, BOOL>(p0); } // A1593D2D8A42357B 3BF93651
 	static BOOL IS_VEHICLE_ATTACHED_TO_TOW_TRUCK(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0x7FA9B9EC1CAEE692, BOOL>(p0, p1); } // 7FA9B9EC1CAEE692 9699CFDC
 	static uint32_t GET_ENTITY_ATTACHED_TO_TOW_TRUCK(uint32_t p0) { return rage::NativeInvoke::Invoke<0xD4674B673D8048B, uint32_t>(p0); } // D4674B673D8048B 11EC7844
 	static uint32_t SET_VEHICLE_AUTOMATICALLY_ATTACHES(uint32_t p0, uint32_t p1, uint32_t p2) { return rage::NativeInvoke::Invoke<0xCDED36A388C5C6F3, uint32_t>(p0, p1, p2); } // CDED36A388C5C6F3 4273A8D3
@@ -1379,7 +1379,7 @@ namespace VEHICLE
 	static BOOL _0x8D770EBA5B1B0101(uint32_t p0) { return rage::NativeInvoke::Invoke<0x8D770EBA5B1B0101, BOOL>(p0); } // 8D770EBA5B1B0101 AF8CB3DF
 	static void _0x632C6A73C8F25F0C(uint32_t p0) { rage::NativeInvoke::Invoke<0x632C6A73C8F25F0C, uint32_t>(p0); } // 632C6A73C8F25F0C 45F72495
 	static void DETACH_VEHICLE_FROM_CARGOBOB(uint32_t p0, uint32_t p1) { rage::NativeInvoke::Invoke<0x02CC89657300D2B64, uint32_t>(p0, p1); } // 02CC89657300D2B64 83D3D331
-	static BOOL DETACH_VEHICLE_FROM_uint32_t_CARGOBOB(uint32_t p0) { return rage::NativeInvoke::Invoke<0xA253E3933F868783, BOOL>(p0); } // A253E3933F868783 50E0EABE
+	static BOOL DETACH_VEHICLE_FROM_ANY_CARGOBOB(uint32_t p0) { return rage::NativeInvoke::Invoke<0xA253E3933F868783, BOOL>(p0); } // A253E3933F868783 50E0EABE
 	static BOOL IS_VEHICLE_ATTACHED_TO_CARGOBOB(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0xA89E36906A28895D, BOOL>(p0, p1); } // A89E36906A28895D 5DEEC76C
 	static uint32_t GET_VEHICLE_ATTACHED_TO_CARGOBOB(uint32_t p0) { return rage::NativeInvoke::Invoke<0xEDBD27E7EA93FB0F, uint32_t>(p0); } // EDBD27E7EA93FB0F 301A1D24
 	static void ATTACH_VEHICLE_TO_CARGOBOB(uint32_t p0, uint32_t p1, uint32_t p2, float p3, float p4, float p5) { rage::NativeInvoke::Invoke<0x44D3AD547AC63124, uint32_t>(p0, p1, p2, p3, p4, p5); } // 44D3AD547AC63124 607DC9D5
@@ -1482,7 +1482,7 @@ namespace OBJECT
 	static void SET_OBJECT_PHYSICS_PARAMS(uint32_t p0, float p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8, float p9, float p10, float p11) { rage::NativeInvoke::Invoke<0x9547DA0F3BA0C9C4, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11); } // 9547DA0F3BA0C9C4 E8D11C58
 	static float GET_OBJECT_FRAGMENT_DAMAGE_HEALTH(uint32_t p0, BOOL p1) { return rage::NativeInvoke::Invoke<0x3735E22AB80C6902, float>(p0, p1); } // 3735E22AB80C6902 F0B330AD
 	static void SET_ACTIVATE_OBJECT_PHYSICS_AS_SOON_AS_IT_IS_UNFROZEN(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0xC3C2903A62F202C5, uint32_t>(p0, p1); } // C3C2903A62F202C5 3E263AE1
-	static BOOL IS_uint32_t_OBJECT_NEAR_POINT(float p0, float p1, float p2, float p3, BOOL p4) { return rage::NativeInvoke::Invoke<0x3D4E28BCE4C60954, BOOL>(p0, p1, p2, p3, p4); } // 3D4E28BCE4C60954 E9E46941
+	static BOOL IS_ANY_OBJECT_NEAR_POINT(float p0, float p1, float p2, float p3, BOOL p4) { return rage::NativeInvoke::Invoke<0x3D4E28BCE4C60954, BOOL>(p0, p1, p2, p3, p4); } // 3D4E28BCE4C60954 E9E46941
 	static BOOL IS_OBJECT_NEAR_POINT(uint32_t p0, float p1, float p2, float p3, float p4) { return rage::NativeInvoke::Invoke<0x47B746365AD99ED1, BOOL>(p0, p1, p2, p3, p4); } // 47B746365AD99ED1 50A62C43
 	static void _0xD652BD009496F421(uint32_t p0) { rage::NativeInvoke::Invoke<0xD652BD009496F421, uint32_t>(p0); } // D652BD009496F421 E3261B35
 	static void _0x487D912F69CDACB6(uint32_t p0, uint32_t p1, BOOL p2) { rage::NativeInvoke::Invoke<0x487D912F69CDACB6, uint32_t>(p0, p1, p2); } // 487D912F69CDACB6 1E82C2AE
@@ -1586,7 +1586,7 @@ namespace AI
 	static void _0x9A82C218923EF8B6(float p0) { rage::NativeInvoke::Invoke<0x9A82C218923EF8B6, uint32_t>(p0); } // 9A82C218923EF8B6 2AFB14B8
 	static uint32_t GET_NAVMESH_ROUTE_DISTANCE_REMAINING(uint32_t p0, uint32_t *p1, uint32_t *p2) { return rage::NativeInvoke::Invoke<0x4DF6F5FCDD26D405, uint32_t>(p0, p1, p2); } // 4DF6F5FCDD26D405 D9281778
 	static uint32_t GET_NAVMESH_ROUTE_RESULT(uint32_t p0) { return rage::NativeInvoke::Invoke<0x5AB2085F8EE3E606, uint32_t>(p0); } // 5AB2085F8EE3E606 96491602
-	static void TASK_GO_TO_COORD_uint32_t_MEANS(uint32_t p0, float p1, float p2, float p3, float p4, uint32_t p5, BOOL p6, uint32_t p7, float p8) { rage::NativeInvoke::Invoke<0x35A120A011FD797, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8); } // 35A120A011FD797 F91DF93B
+	static void TASK_GO_TO_COORD_ANY_MEANS(uint32_t p0, float p1, float p2, float p3, float p4, uint32_t p5, BOOL p6, uint32_t p7, float p8) { rage::NativeInvoke::Invoke<0x35A120A011FD797, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8); } // 35A120A011FD797 F91DF93B
 	static void _0x2A6FEBABC0830CA9(uint32_t p0, uint32_t p1, uint32_t p2, uint32_t p3, uint32_t p4, uint32_t p5, uint32_t p6, uint32_t p7, uint32_t p8, uint32_t p9, uint32_t p10, uint32_t p11) { rage::NativeInvoke::Invoke<0x2A6FEBABC0830CA9, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11); } // 2A6FEBABC0830CA9 094B75EF
 	static void _0x5AD57569258490A(uint32_t p0, uint32_t p1, uint32_t p2, uint32_t p3, uint32_t p4, uint32_t p5, uint32_t p6, uint32_t p7, uint32_t p8, uint32_t p9, uint32_t p10, uint32_t p11, uint32_t p12) { rage::NativeInvoke::Invoke<0x5AD57569258490A, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12); } // 5AD57569258490A 86DC03F9
 	static void TASK_PLAY_ANIM(uint32_t p0, uint32_t *p1, uint32_t *p2, float p3, float p4, uint32_t p5, uint32_t p6, float p7, BOOL p8, uint32_t p9, BOOL p10) { rage::NativeInvoke::Invoke<0xEC0A546609840086, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10); } // EC0A546609840086 5AB552C6
@@ -1616,7 +1616,7 @@ namespace AI
 	static BOOL GET_IS_TASK_ACTIVE(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0x7ECD7807CAEF4F14, BOOL>(p0, p1); } // 7ECD7807CAEF4F14 86FDDF55
 	static uint32_t GET_SCRIPT_TASK_STATUS(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0xEC043AB2FEE0E94F, uint32_t>(p0, p1); } // EC043AB2FEE0E94F B2477B23
 	static uint32_t _0xC6F1531F56379804(uint32_t p0) { return rage::NativeInvoke::Invoke<0xC6F1531F56379804, uint32_t>(p0); } // C6F1531F56379804 AFA914EF
-	static void TASK_LEAVE_uint32_t_VEHICLE(uint32_t p0, uint32_t p1, uint32_t p2) { rage::NativeInvoke::Invoke<0x48367A1F7C9A1041, uint32_t>(p0, p1, p2); } // 48367A1F7C9A1041 DBDD79FA
+	static void TASK_LEAVE_ANY_VEHICLE(uint32_t p0, uint32_t p1, uint32_t p2) { rage::NativeInvoke::Invoke<0x48367A1F7C9A1041, uint32_t>(p0, p1, p2); } // 48367A1F7C9A1041 DBDD79FA
 	static void TASK_AIM_GUN_SCRIPTED(uint32_t p0, uint32_t p1, BOOL p2, BOOL p3) { rage::NativeInvoke::Invoke<0xC2AA0AE3AAEE938, uint32_t>(p0, p1, p2, p3); } // C2AA0AE3AAEE938 9D296BCD
 	static void TASK_AIM_GUN_SCRIPTED_WITH_TARGET(uint32_t p0, uint32_t p1, float p2, float p3, float p4, uint32_t p5, BOOL p6, BOOL p7) { rage::NativeInvoke::Invoke<0x73F7EDC0706A0721, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7); } // 73F7EDC0706A0721 FD517CE3
 	static void _0x6A07493CAE8D58BA(uint32_t p0, uint32_t p1, float p2, float p3, float p4, BOOL p5) { rage::NativeInvoke::Invoke<0x6A07493CAE8D58BA, uint32_t>(p0, p1, p2, p3, p4, p5); } // 6A07493CAE8D58BA 67E73525
@@ -2006,7 +2006,7 @@ namespace GAMEPLAY
 	static void CANCEL_STUNT_JUMP() { rage::NativeInvoke::Invoke<0xCDA654FAE03C06F9, uint32_t>(); } // CDA654FAE03C06F9 F43D9821
 	static void SET_GAME_PAUSED(BOOL p0) { rage::NativeInvoke::Invoke<0x1757405122DE8566, uint32_t>(p0); } // 1757405122DE8566 8230FF6C
 	static void SET_THIS_SCRIPT_CAN_BE_PAUSED(BOOL p0) { rage::NativeInvoke::Invoke<0xB43679BBB30F1391, uint32_t>(p0); } // B43679BBB30F1391 A0C3CE29
-	static void SET_THIS_SCRIPT_CAN_REMOVE_BLIPS_CREATED_BY_uint32_t_SCRIPT(BOOL p0) { rage::NativeInvoke::Invoke<0x952F8F1F0AE0C407, uint32_t>(p0); } // 952F8F1F0AE0C407 D06F1720
+	static void SET_THIS_SCRIPT_CAN_REMOVE_BLIPS_CREATED_BY_ANY_SCRIPT(BOOL p0) { rage::NativeInvoke::Invoke<0x952F8F1F0AE0C407, uint32_t>(p0); } // 952F8F1F0AE0C407 D06F1720
 	static BOOL _0x0695803D9947A1969(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0x0695803D9947A1969, BOOL>(p0, p1); } // 0695803D9947A1969 FF6191E1
 	static void _0x4DE32C0390C17D15(uint32_t p0) { rage::NativeInvoke::Invoke<0x4DE32C0390C17D15, uint32_t>(p0); } // 4DE32C0390C17D15 721B2492
 	static void _0x1CD86B48C55CAB17(uint32_t p0) { rage::NativeInvoke::Invoke<0x1CD86B48C55CAB17, uint32_t>(p0); } // 1CD86B48C55CAB17 E202879D
@@ -2137,7 +2137,7 @@ namespace AUDIO
 	static void PLAY_SOUND(uint32_t p0, uint32_t *p1, uint32_t *p2, BOOL p3, uint32_t p4, BOOL p5) { rage::NativeInvoke::Invoke<0x88DC35B34477782D, uint32_t>(p0, p1, p2, p3, p4, p5); } // 88DC35B34477782D B6E1917F
 	static void PLAY_SOUND_FRONTEND(uint32_t p0, const char *p1, const char *p2, BOOL p3) { rage::NativeInvoke::Invoke<0x84795EA8F54230A1, uint32_t>(p0, p1, p2, p3); } // 84795EA8F54230A1 2E458F74
 	static void _0xBF3C64DCF9D3C57C(uint32_t *p0, uint32_t *p1) { rage::NativeInvoke::Invoke<0xBF3C64DCF9D3C57C, uint32_t>(p0, p1); } // BF3C64DCF9D3C57C C70E6CFA
-	static void PLAY_SOUND_FROM_ENTITY(uint32_t p0, uint32_t *p1, uint32_t p2, uint32_t *p3, BOOL p4, uint32_t p5) { rage::NativeInvoke::Invoke<0xC4E6094A4C954E29, uint32_t>(p0, p1, p2, p3, p4, p5); } // C4E6094A4C954E29 95AE00F8
+	static void PLAY_SOUND_FROM_ENTITY(uint32_t p0, const char *p1, uint32_t p2, const char *p3, BOOL p4, uint32_t p5) { rage::NativeInvoke::Invoke<0xC4E6094A4C954E29, uint32_t>(p0, p1, p2, p3, p4, p5); } // C4E6094A4C954E29 95AE00F8
 	static void PLAY_SOUND_FROM_COORD(uint32_t p0, uint32_t *p1, float p2, float p3, float p4, uint32_t *p5, BOOL p6, uint32_t p7, BOOL p8) { rage::NativeInvoke::Invoke<0xE89B40A4D255370C, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8); } // E89B40A4D255370C CAD3E2D5
 	static void STOP_SOUND(uint32_t p0) { rage::NativeInvoke::Invoke<0x5B438162CCD91A71, uint32_t>(p0); } // 5B438162CCD91A71 CD7F4030
 	static uint32_t GET_NETWORK_ID_FROM_SOUND_ID(uint32_t p0) { return rage::NativeInvoke::Invoke<0x11BD7D6459923D36, uint32_t>(p0); } // 11BD7D6459923D36 2576F610
@@ -2161,7 +2161,7 @@ namespace AUDIO
 	static void STOP_CURRENT_PLAYING_AMBIENT_SPEECH(uint32_t p0) { rage::NativeInvoke::Invoke<0x7416091E97852604, uint32_t>(p0); } // 7416091E97852604 BB8E64BF
 	static BOOL IS_AMBIENT_SPEECH_PLAYING(uint32_t p0) { return rage::NativeInvoke::Invoke<0x135ED76D25C24E67, BOOL>(p0); } // 135ED76D25C24E67 1972E8AA
 	static BOOL IS_SCRIPTED_SPEECH_PLAYING(uint32_t p0) { return rage::NativeInvoke::Invoke<0xCE9BBF479F2EC6F1, BOOL>(p0); } // CE9BBF479F2EC6F1 2C653904
-	static BOOL IS_uint32_t_SPEECH_PLAYING(uint32_t p0) { return rage::NativeInvoke::Invoke<0x17E998AB655366FD, BOOL>(p0); } // 17E998AB655366FD 2B74A6D6
+	static BOOL IS_ANY_SPEECH_PLAYING(uint32_t p0) { return rage::NativeInvoke::Invoke<0x17E998AB655366FD, BOOL>(p0); } // 17E998AB655366FD 2B74A6D6
 	static BOOL _0xB5A57318FFBC236D(uint32_t p0, uint32_t *p1, BOOL p2) { return rage::NativeInvoke::Invoke<0xB5A57318FFBC236D, BOOL>(p0, p1, p2); } // B5A57318FFBC236D 8BD5F11E
 	static BOOL IS_PED_IN_CURRENT_CONVERSATION(uint32_t p0) { return rage::NativeInvoke::Invoke<0x05117626A8E215F91, BOOL>(p0); } // 05117626A8E215F91 7B2F0743
 	static void SET_PED_IS_DRUNK(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x5FFD5ABB6E7B7D77, uint32_t>(p0, p1); } // 5FFD5ABB6E7B7D77 D2EA77A3
@@ -3188,22 +3188,22 @@ namespace UI
 	static void _0xF914B8DF951A923(uint32_t p0, uint32_t p1, float p2, float p3) { rage::NativeInvoke::Invoke<0xF914B8DF951A923, uint32_t>(p0, p1, p2, p3); } // F914B8DF951A923 18B012B7
 	static void _0x6343EDC03B72A678(uint32_t p0, uint32_t p1, uint32_t p2, uint32_t p3, uint32_t p4, uint32_t p5) { rage::NativeInvoke::Invoke<0x6343EDC03B72A678, uint32_t>(p0, p1, p2, p3, p4, p5); } // 6343EDC03B72A678 97852A82
 	static void CLEAR_FLOATING_HELP(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0xDB8E6614BEC7977E, uint32_t>(p0, p1); } // DB8E6614BEC7977E B181F88F
-	static void _0xF55905207DDCE4B(uint32_t p0, uint32_t *p1, BOOL p2, BOOL p3, uint32_t *p4, uint32_t p5, uint32_t p6, uint32_t p7, uint32_t p8) { rage::NativeInvoke::Invoke<0xF55905207DDCE4B, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8); } // F55905207DDCE4B C969F2D0
-	static BOOL _0x46119117C732580() { return rage::NativeInvoke::Invoke<0x46119117C732580, BOOL>(); } // 46119117C732580 EFD2564A
-	static uint32_t _0xC0C3ADAA5E2742A8(uint32_t p0, uint32_t *p1, BOOL p2, BOOL p3, uint32_t *p4, uint32_t p5) { return rage::NativeInvoke::Invoke<0xC0C3ADAA5E2742A8, uint32_t>(p0, p1, p2, p3, p4, p5); } // C0C3ADAA5E2742A8 F5CD2AA4
-	static void _0xB16A30FAC740F372(uint32_t p0) { rage::NativeInvoke::Invoke<0xB16A30FAC740F372, uint32_t>(p0); } // B16A30FAC740F372 3D081FE4
-	static BOOL _0x78D2B86B27D417FE(uint32_t p0) { return rage::NativeInvoke::Invoke<0x78D2B86B27D417FE, BOOL>(p0); } // 78D2B86B27D417FE 60118951
+	static void _CREATE_PED_HEAD_DISPLAY_2(uint32_t p0, const char* *p1, BOOL p2, BOOL p3, const char *p4, uint32_t p5, uint32_t p6, uint32_t p7, uint32_t p8) { rage::NativeInvoke::Invoke<0xF55905207DDCE4B, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8); } // F55905207DDCE4B C969F2D0
+	static BOOL _ARE_HEAD_DISPLAYS_READY() { return rage::NativeInvoke::Invoke<0x46119117C732580, BOOL>(); } // 46119117C732580 EFD2564A
+	static uint32_t _CREATE_PED_HEAD_DISPLAY(uint32_t p0, const char *p1, BOOL p2, BOOL p3, const char *p4, uint32_t p5) { return rage::NativeInvoke::Invoke<0xC0C3ADAA5E2742A8, uint32_t>(p0, p1, p2, p3, p4, p5); } // C0C3ADAA5E2742A8 F5CD2AA4
+	static void _DELETE_HEAD_DISPLAY(uint32_t p0) { rage::NativeInvoke::Invoke<0xB16A30FAC740F372, uint32_t>(p0); } // B16A30FAC740F372 3D081FE4
+	static BOOL _IS_HEAD_DISPLAY_ID_VALID(uint32_t p0) { return rage::NativeInvoke::Invoke<0x78D2B86B27D417FE, BOOL>(p0); } // 78D2B86B27D417FE 60118951
 	static BOOL ADD_TREVOR_RANDOM_MODIFIER(uint32_t p0) { return rage::NativeInvoke::Invoke<0x4B4B2CA8617C20C1, BOOL>(p0); } // 4B4B2CA8617C20C1 63959059
-	static void _0x1794D34117D18C4(uint32_t p0, uint32_t p1, BOOL p2) { rage::NativeInvoke::Invoke<0x1794D34117D18C4, uint32_t>(p0, p1, p2); } // 1794D34117D18C4 D41DF479
-	static void _0x4CB5F83CD5B8333(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x4CB5F83CD5B8333, uint32_t>(p0, p1); } // 4CB5F83CD5B8333 767DED29
-	static void _0x2395A5BAA8CCB54(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x2395A5BAA8CCB54, uint32_t>(p0, p1); } // 2395A5BAA8CCB54 B01A5434
-	static void _0x75868EF4D5C8A90B(uint32_t p0, uint32_t p1, uint32_t p2) { rage::NativeInvoke::Invoke<0x75868EF4D5C8A90B, uint32_t>(p0, p1, p2); } // 75868EF4D5C8A90B 7E3AA40A
-	static void _0x7298EA23DA5180D5(uint32_t p0, uint32_t p1) { rage::NativeInvoke::Invoke<0x7298EA23DA5180D5, uint32_t>(p0, p1); } // 7298EA23DA5180D5 5777EC77
-	static void _0x7B0C1FCDD1359963(uint32_t p0, uint32_t p1, uint32_t p2) { rage::NativeInvoke::Invoke<0x7B0C1FCDD1359963, uint32_t>(p0, p1, p2); } // 7B0C1FCDD1359963 F4418611
-	static void _0xFB17463B0E8EFACF(uint32_t p0, uint32_t p1) { rage::NativeInvoke::Invoke<0xFB17463B0E8EFACF, uint32_t>(p0, p1); } // FB17463B0E8EFACF 0EBB003F
-	static void _0x7156A173B1B5DC67(uint32_t p0, uint32_t *p1) { rage::NativeInvoke::Invoke<0x7156A173B1B5DC67, uint32_t>(p0, p1); } // 7156A173B1B5DC67 627A559B
-	static BOOL _0x10220B72586ADF4E(uint32_t p0) { return rage::NativeInvoke::Invoke<0x10220B72586ADF4E, BOOL>(p0); } // 10220B72586ADF4E F11414C4
-	static void _0x8734BB476A33A3F2(uint32_t p0, uint32_t *p1) { rage::NativeInvoke::Invoke<0x8734BB476A33A3F2, uint32_t>(p0, p1); } // 8734BB476A33A3F2 939218AB
+	static void _SET_HEAD_DISPLAY_FLAG(uint32_t p0, uint32_t p1, BOOL p2) { rage::NativeInvoke::Invoke<0x1794D34117D18C4, uint32_t>(p0, p1, p2); } // 1794D34117D18C4 D41DF479
+	static void _SET_HEAD_DISPLAY_UNKNWON1(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x4CB5F83CD5B8333, uint32_t>(p0, p1); } // 4CB5F83CD5B8333 767DED29
+	static void _SET_HEAD_DISPLAY_VISIBLE(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x2395A5BAA8CCB54, uint32_t>(p0, p1); } // 2395A5BAA8CCB54 B01A5434
+	static void _SET_HEAD_DISPLAY_UNKNWON2(uint32_t p0, uint32_t p1, uint32_t p2) { rage::NativeInvoke::Invoke<0x75868EF4D5C8A90B, uint32_t>(p0, p1, p2); } // 75868EF4D5C8A90B 7E3AA40A
+	static void _SET_HEAD_DISPLAY_UNKNWON3(uint32_t p0, uint32_t p1) { rage::NativeInvoke::Invoke<0x7298EA23DA5180D5, uint32_t>(p0, p1); } // 7298EA23DA5180D5 5777EC77
+	static void _SET_HEAD_DISPLAY_ALPHA(uint32_t p0, uint32_t p1, uint32_t p2) { rage::NativeInvoke::Invoke<0x7B0C1FCDD1359963, uint32_t>(p0, p1, p2); } // 7B0C1FCDD1359963 F4418611
+	static BOOL _SET_HEAD_DISPLAY_WANTED_LEVEL(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0xFB17463B0E8EFACF, uint32_t>(p0, p1); } // FB17463B0E8EFACF 0EBB003F
+	static BOOL _SET_HEAD_DISPLAY_STRING(uint32_t p0, const char *p1) { return rage::NativeInvoke::Invoke<0x7156A173B1B5DC67, uint32_t>(p0, p1); } // 7156A173B1B5DC67 627A559B
+	static BOOL _GET_HEAD_DISPLAY_UNKNWON1(uint32_t p0) { return rage::NativeInvoke::Invoke<0x10220B72586ADF4E, BOOL>(p0); } // 10220B72586ADF4E F11414C4
+	static void _SET_HEAD_DISPLAY_UNKNWON5(uint32_t p0, uint32_t *p1) { rage::NativeInvoke::Invoke<0x8734BB476A33A3F2, uint32_t>(p0, p1); } // 8734BB476A33A3F2 939218AB
 	static uint32_t _0x028B0B9FAE91FC125() { return rage::NativeInvoke::Invoke<0x028B0B9FAE91FC125, uint32_t>(); } // 028B0B9FAE91FC125 AB5B7C18
 	static uint32_t GET_CURRENT_WEBSITE_ID() { return rage::NativeInvoke::Invoke<0xCFDAF1A342ABD988, uint32_t>(); } // CFDAF1A342ABD988 42A55B14
 	static uint32_t _0x160F30A19B8C7963(uint32_t p0) { return rage::NativeInvoke::Invoke<0x160F30A19B8C7963, uint32_t>(p0); } // 160F30A19B8C7963 D217EE7E
@@ -3440,7 +3440,7 @@ namespace GRAPHICS
 	static void _0x4A6FD8BBD9FD972C(float p0, float p1, float p2) { rage::NativeInvoke::Invoke<0x4A6FD8BBD9FD972C, uint32_t>(p0, p1, p2); } // 4A6FD8BBD9FD972C 7B689E20
 	static void SET_PARTICLE_FX_NON_LOOPED_ALPHA(float p0) { rage::NativeInvoke::Invoke<0x59DA99BF43B66385, uint32_t>(p0); } // 59DA99BF43B66385 497EAFF2
 	static void _0xBEC45683E225C647(BOOL p0) { rage::NativeInvoke::Invoke<0xBEC45683E225C647, uint32_t>(p0); } // BEC45683E225C647
-	static uint32_t START_PARTICLE_FX_LOOPED_AT_COORD(uint32_t *p0, float p1, float p2, float p3, float p4, float p5, float p6, float p7, BOOL p8, BOOL p9, BOOL p10, BOOL p11) { return rage::NativeInvoke::Invoke<0x3F2250BCCDDD976F, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11); } // 3F2250BCCDDD976F D348E3E6
+	static uint32_t START_PARTICLE_FX_LOOPED_AT_COORD(const char *p0, float p1, float p2, float p3, float p4, float p5, float p6, float p7, BOOL p8, BOOL p9, BOOL p10, BOOL p11) { return rage::NativeInvoke::Invoke<0x3F2250BCCDDD976F, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11); } // 3F2250BCCDDD976F D348E3E6
 	static uint32_t START_PARTICLE_FX_LOOPED_ON_PED_BONE(uint32_t *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, uint32_t p8, float p9, BOOL p10, BOOL p11, BOOL p12) { return rage::NativeInvoke::Invoke<0x90FEA1BBBFEF166B, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12); } // 90FEA1BBBFEF166B F8FC196F
 	static uint32_t START_PARTICLE_FX_LOOPED_ON_ENTITY(uint32_t *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8, BOOL p9, BOOL p10, BOOL p11) { return rage::NativeInvoke::Invoke<0xB9B1EE085AEABF71, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11); } // B9B1EE085AEABF71 0D06FF62
 	static uint32_t _0x707FE98E507B694(uint32_t *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, uint32_t p8, float p9, BOOL p10, BOOL p11, BOOL p12) { return rage::NativeInvoke::Invoke<0x707FE98E507B694, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12); } // 707FE98E507B694
@@ -4449,7 +4449,7 @@ namespace NETWORK
 	static void _0x064F4DFCD147D0B88(BOOL p0) { rage::NativeInvoke::Invoke<0x064F4DFCD147D0B88, uint32_t>(p0); } // 064F4DFCD147D0B88 1BCD3DDF
 	static void NETWORK_SET_VOICE_CHANNEL(uint32_t p0) { rage::NativeInvoke::Invoke<0x2F19459692DCD579, uint32_t>(p0); } // 2F19459692DCD579 3974879F
 	static void _0x2D69690B1A33F30C() { rage::NativeInvoke::Invoke<0x2D69690B1A33F30C, uint32_t>(); } // 2D69690B1A33F30C 9ECF722A
-	static void IS_NETWORK_VEHICLE_BEEN_DAMAGED_BY_uint32_t_OBJECT(uint32_t p0, uint32_t p1, uint32_t p2) { rage::NativeInvoke::Invoke<0x316E5F1CDD67AAF5, uint32_t>(p0, p1, p2); } // 316E5F1CDD67AAF5 F1E84832
+	static void IS_NETWORK_VEHICLE_BEEN_DAMAGED_BY_ANY_OBJECT(uint32_t p0, uint32_t p1, uint32_t p2) { rage::NativeInvoke::Invoke<0x316E5F1CDD67AAF5, uint32_t>(p0, p1, p2); } // 316E5F1CDD67AAF5 F1E84832
 	static void _0x7C6F918A4E3148A() { rage::NativeInvoke::Invoke<0x7C6F918A4E3148A, uint32_t>(); } // 7C6F918A4E3148A 7F9B9052
 	static void _0x8D32EB47FCEB114B(uint32_t p0) { rage::NativeInvoke::Invoke<0x8D32EB47FCEB114B, uint32_t>(p0); } // 8D32EB47FCEB114B 7BBEA8CF
 	static void _0x6C06F37FCF560A5B(uint32_t p0) { rage::NativeInvoke::Invoke<0x6C06F37FCF560A5B, uint32_t>(p0); } // 6C06F37FCF560A5B E797A4B6

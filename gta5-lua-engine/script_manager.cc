@@ -5,6 +5,15 @@
 
 
 namespace lua {
+  void ManagedScriptThread::DoRun() {
+    callback();
+  }
+
+  void ManagedScriptThread::Yield(uint32_t time) {
+    Sleep(time);
+  }
+
+
 	ScriptManager& ScriptManager::GetInstance() {
 		static ScriptManager  instance;
 		return instance;

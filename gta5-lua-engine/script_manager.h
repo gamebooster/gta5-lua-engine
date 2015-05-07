@@ -4,18 +4,28 @@
 #include <map>
 #include <string>
 
+#pragma comment(lib, "winmm.lib")
+#include <mmsystem.h>
+
+
 namespace lua {
+
+#undef Yield
+
 	class ManagedScriptThread : rage::ScriptThread {
 		typedef void(*callback_func)();
+    HANDLE m_fiber;
+    uint32_t m_wakeAt;
 
 		callback_func callback;
-		virtual void DoRun() override {
-			callback();
-		}
+    virtual void DoRun() override;
 		explicit ManagedScriptThread(ManagedScriptThread const&);
 		void operator=(ManagedScriptThread const&);
+
 	  public:
 		  ManagedScriptThread() {
+        m_fiber = nullptr;
+        m_wakeAt = timeGetTime();
 		  }
 		  ~ManagedScriptThread() {
 #ifdef COMPILE_BLADE_SCRIPTHOOK
@@ -25,10 +35,16 @@ namespace lua {
 #endif
 		  }
 
+      void Run() {
+        callback();
+      }
+
+      void Yield(uint32_t time);
+
 		  void SetCallback(callback_func cb) {
 			  callback = cb;
 #ifdef COMPILE_BLADE_SCRIPTHOOK
-			  scriptRegister(GetModuleHandle(NULL), callback);
+			  scriptRegister(nullptr, callback);
 #else
 			  rage::ScriptHook::AttachScriptThread(this);
 #endif
@@ -46,6 +62,10 @@ namespace lua {
 		void ExecuteScript(const std::string& name);
 		void ReloadScripts();
 		static ScriptManager& GetInstance();
+
+    void Wait(uint32_t ms) {
+      script_thread_.Yield(ms);
+    }
 
 	private:
 		void CallOnScriptThread();

@@ -54,18 +54,17 @@ namespace rage {
 			return;
 		}
 
-		new_thread->Reset(1, nullptr, 0);
+    new_thread->Reset((*g_thread_count) + 1, nullptr, 0);
 
-		if (*g_thread_id == 0)
-		{
-			(*g_thread_id)++;
-		}
+    if (*g_thread_id == 0) {
+      (*g_thread_id)++;
+    }
 
-		new_thread->SetThreadId(*g_thread_id);
-		new_thread->script_handler_manager = g_script_handler_manager;
+    new_thread->GetContext()->ThreadId = *g_thread_id;
+    new_thread->script_handler_manager = g_script_handler_manager;
 
-		*(g_thread_id)++;
-		*(g_thread_count)++;
+    (*g_thread_id)++;
+    (*g_thread_count)++;
 
 		org_thread = std::pair<ScriptThread*, int>(collection->at(slot), slot);
 
