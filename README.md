@@ -1,6 +1,7 @@
 # gta5-lua-engine (gta5-scripthook)
 
 Example scripts under `/scripts`
+Only a fun project on the side. For reliable mods better use [GTALua] (http://gtaforums.com/topic/790179-vrel-gtalua-script-engine-in-lua/) or [LuaPluginForScriptHookV] (http://gtaforums.com/topic/789139-vrelhook-lua-plugin-for-script-hook-v/)
 
 ### Last checked gta build version
 `350.2`
