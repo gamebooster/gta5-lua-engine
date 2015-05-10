@@ -2116,7 +2116,7 @@ namespace AUDIO
 	static void PAUSE_SCRIPTED_CONVERSATION(BOOL p0) { rage::NativeInvoke::Invoke<0x6F0E5D34471BD5CD, uint32_t>(p0); } // 6F0E5D34471BD5CD E2C9C6F8
 	static void RESTART_SCRIPTED_CONVERSATION() { rage::NativeInvoke::Invoke<0xA2A4AD85BA2F7ADD, uint32_t>(); } // A2A4AD85BA2F7ADD 6CB24B56
 	static uint32_t STOP_SCRIPTED_CONVERSATION(BOOL p0) { return rage::NativeInvoke::Invoke<0xD858EC6FECDB4B3F, uint32_t>(p0); } // D858EC6FECDB4B3F AB77DA7D
-	static void SKIP_TO_NEXT_SCRIPTED_CONVERSATION_LINE() { rage::NativeInvoke::Invoke<0xD2E9649AA1893F13, uint32_t>(); } // D2E9649AA1893F13 85C98304
+	static void SKIP_TO_NEXT_SCRIPTED_CONVERSATION_LINE() { rage::NativeInvoke::Invoke<0xD2E9649AA1893F13, uint32_t>(); } // D2E9649AA1893F13 85C98304HAS_PTFX_ASSET_LOADED
 	static void INTERRUPT_CONVERSATION(uint32_t p0, uint32_t *p1, uint32_t *p2) { rage::NativeInvoke::Invoke<0x3B8F9A5D5B590EA7, uint32_t>(p0, p1, p2); } // 3B8F9A5D5B590EA7 F3A67AF3
 	static uint32_t _0x4D6D780E6C70D72E(uint32_t *p0) { return rage::NativeInvoke::Invoke<0x4D6D780E6C70D72E, uint32_t>(p0); } // 4D6D780E6C70D72E B58B8FF3
 	static void _0x2895339F9D70AFFF(BOOL p0) { rage::NativeInvoke::Invoke<0x2895339F9D70AFFF, uint32_t>(p0); } // 2895339F9D70AFFF 789D8C6C
@@ -2138,7 +2138,7 @@ namespace AUDIO
 	static void PLAY_SOUND_FRONTEND(uint32_t p0, const char *p1, const char *p2, BOOL p3) { rage::NativeInvoke::Invoke<0x84795EA8F54230A1, uint32_t>(p0, p1, p2, p3); } // 84795EA8F54230A1 2E458F74
 	static void _0xBF3C64DCF9D3C57C(uint32_t *p0, uint32_t *p1) { rage::NativeInvoke::Invoke<0xBF3C64DCF9D3C57C, uint32_t>(p0, p1); } // BF3C64DCF9D3C57C C70E6CFA
 	static void PLAY_SOUND_FROM_ENTITY(uint32_t p0, const char *p1, uint32_t p2, const char *p3, BOOL p4, uint32_t p5) { rage::NativeInvoke::Invoke<0xC4E6094A4C954E29, uint32_t>(p0, p1, p2, p3, p4, p5); } // C4E6094A4C954E29 95AE00F8
-	static void PLAY_SOUND_FROM_COORD(uint32_t p0, uint32_t *p1, float p2, float p3, float p4, uint32_t *p5, BOOL p6, uint32_t p7, BOOL p8) { rage::NativeInvoke::Invoke<0xE89B40A4D255370C, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8); } // E89B40A4D255370C CAD3E2D5
+	static void PLAY_SOUND_FROM_COORD(uint32_t p0, const char *p1, float p2, float p3, float p4, const char *p5, BOOL p6, uint32_t p7, BOOL p8) { rage::NativeInvoke::Invoke<0xE89B40A4D255370C, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8); } // E89B40A4D255370C CAD3E2D5
 	static void STOP_SOUND(uint32_t p0) { rage::NativeInvoke::Invoke<0x5B438162CCD91A71, uint32_t>(p0); } // 5B438162CCD91A71 CD7F4030
 	static uint32_t GET_NETWORK_ID_FROM_SOUND_ID(uint32_t p0) { return rage::NativeInvoke::Invoke<0x11BD7D6459923D36, uint32_t>(p0); } // 11BD7D6459923D36 2576F610
 	static uint32_t _0xECFAB34EFB322D47(uint32_t p0) { return rage::NativeInvoke::Invoke<0xECFAB34EFB322D47, uint32_t>(p0); } // ECFAB34EFB322D47 D064D4DC
@@ -2656,7 +2656,7 @@ namespace WEAPON
 	static void SET_PED_AMMO_TO_DROP(uint32_t p0, uint32_t p1) { rage::NativeInvoke::Invoke<0x395B0BA0616F847C, uint32_t>(p0, p1); } // 395B0BA0616F847C 2386A307
 	static void _0x497AA8F1AEB81ABD(float p0) { rage::NativeInvoke::Invoke<0x497AA8F1AEB81ABD, uint32_t>(p0); } // 497AA8F1AEB81ABD D6460EA2
 	static uint32_t _0x46876FC049FB1DBA(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0x46876FC049FB1DBA, uint32_t>(p0, p1); } // 46876FC049FB1DBA 09337863
-	static uint32_t GET_PED_LAST_WEAPON_IMPACT_COORD(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0x12AA7FF0D68549E2, uint32_t>(p0, p1); } // 12AA7FF0D68549E2 9B266079
+	static uint32_t GET_PED_LAST_WEAPON_IMPACT_COORD(uint32_t p0, rage::scrVector* p1) { return rage::NativeInvoke::Invoke<0x12AA7FF0D68549E2, uint32_t>(p0, p1); } // 12AA7FF0D68549E2 9B266079
 	static void SET_PED_GADGET(uint32_t p0, uint32_t p1, BOOL p2) { rage::NativeInvoke::Invoke<0x2D8ABC8CC825C578, uint32_t>(p0, p1, p2); } // 2D8ABC8CC825C578 8A256D0A
 	static BOOL _0xCB79AB67F7DF0E8F(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0xCB79AB67F7DF0E8F, BOOL>(p0, p1); } // CB79AB67F7DF0E8F 8DDD0B5B
 	static uint32_t GET_SELECTED_PED_WEAPON(uint32_t p0) { return rage::NativeInvoke::Invoke<0x038C3C5CBC068F495, uint32_t>(p0); } // 038C3C5CBC068F495 D240123E
@@ -2753,11 +2753,11 @@ namespace STREAMING
 	static void SET_REDUCE_VEHICLE_MODEL_BUDGET(BOOL p0) { rage::NativeInvoke::Invoke<0x31C604AB6DA96DB8, uint32_t>(p0); } // 31C604AB6DA96DB8 CDB4FB7E
 	static void SET_DITCH_POLICE_MODELS(uint32_t p0) { rage::NativeInvoke::Invoke<0x9170954EA4850E64, uint32_t>(p0); } // 9170954EA4850E64 3EA7FCE4
 	static uint32_t GET_NUMBER_OF_STREAMING_REQUESTS() { return rage::NativeInvoke::Invoke<0x5B75812E50CF3504, uint32_t>(); } // 5B75812E50CF3504 C2EE9A02
-	static void REQUEST_PTFX_ASSET() { rage::NativeInvoke::Invoke<0x903BC66D86D2CC1E, uint32_t>(); } // 903BC66D86D2CC1E 2C649263
+	static void REQUEST_PTFX_ASSET() { rage::NativeInvoke::Invoke<0x903BC66D86D2CC1E>(); } // 903BC66D86D2CC1E 2C649263
 	static BOOL HAS_PTFX_ASSET_LOADED() { return rage::NativeInvoke::Invoke<0x9B3E74864C634DA, BOOL>(); } // 9B3E74864C634DA 3EFF96BE
-	static void REMOVE_PTFX_ASSET() { rage::NativeInvoke::Invoke<0x7E0FE22DC929277C, uint32_t>(); } // 7E0FE22DC929277C C10F178C
-	static void _0xCF907E5AC65B038E(uint32_t *p0) { rage::NativeInvoke::Invoke<0xCF907E5AC65B038E, uint32_t>(p0); } // CF907E5AC65B038E CFEA19A9
-	static BOOL _0x173B323AC0CDFE9F(uint32_t *p0) { return rage::NativeInvoke::Invoke<0x173B323AC0CDFE9F, BOOL>(p0); } // 173B323AC0CDFE9F 9ACC6446
+	static void REMOVE_PTFX_ASSET() { rage::NativeInvoke::Invoke<0x7E0FE22DC929277C>(); } // 7E0FE22DC929277C C10F178C
+	static void _REQUEST_DLC_PTFX(const char *p0) { rage::NativeInvoke::Invoke<0xCF907E5AC65B038E, uint32_t>(p0); } // CF907E5AC65B038E CFEA19A9
+	static BOOL _HAS_DLC_PTFX_LOADED(const char *p0) { return rage::NativeInvoke::Invoke<0x173B323AC0CDFE9F, BOOL>(p0); } // 173B323AC0CDFE9F 9ACC6446
 	static void SET_VEHICLE_POPULATION_BUDGET(uint32_t p0) { rage::NativeInvoke::Invoke<0x71BAB41E12C3DD96, uint32_t>(p0); } // 71BAB41E12C3DD96 1D56993C
 	static void SET_PED_POPULATION_BUDGET(uint32_t p0) { rage::NativeInvoke::Invoke<0xEC7A879C0E3A5901, uint32_t>(p0); } // EC7A879C0E3A5901 D2D026CD
 	static void CLEAR_FOCUS() { rage::NativeInvoke::Invoke<0x82421251EA167F9A, uint32_t>(); } // 82421251EA167F9A 34D91E7A
@@ -2849,7 +2849,7 @@ namespace SCRIPT
 	static uint32_t GET_ID_OF_THIS_THREAD() { return rage::NativeInvoke::Invoke<0xF682120D0C324317, uint32_t>(); } // F682120D0C324317 DE524830
 	static void TERMINATE_THIS_THREAD() { rage::NativeInvoke::Invoke<0x883793591E631A3B, uint32_t>(); } // 883793591E631A3B 3CD9CBB7
 	static uint32_t _0x25531002BCF0D968(uint32_t p0) { return rage::NativeInvoke::Invoke<0x25531002BCF0D968, uint32_t>(p0); } // 25531002BCF0D968 029D3841
-	static uint32_t GET_THIS_SCRIPT_NAME() { return rage::NativeInvoke::Invoke<0x3ED5FA3F61EC9E68, uint32_t>(); } // 3ED5FA3F61EC9E68 A40FD5D9
+	static const char* GET_THIS_SCRIPT_NAME() { return rage::NativeInvoke::Invoke<0x3ED5FA3F61EC9E68, const char*>(); } // 3ED5FA3F61EC9E68 A40FD5D9
 	static uint32_t _0xADB26EA48763F7() { return rage::NativeInvoke::Invoke<0xADB26EA48763F7, uint32_t>(); } // ADB26EA48763F7 2BEE1F45
 	static uint32_t GET_NUMBER_OF_EVENTS(uint32_t p0) { return rage::NativeInvoke::Invoke<0xB301423C53556EA6, uint32_t>(p0); } // B301423C53556EA6 A3525D60
 	static BOOL GET_EVENT_EXISTS(uint32_t p0, uint32_t p1) { return rage::NativeInvoke::Invoke<0x289D054E2E18C82E, BOOL>(p0, p1); } // 289D054E2E18C82E A1B447B5
@@ -3432,20 +3432,20 @@ namespace GRAPHICS
 	static void _0x773732DA9B0D7CF8(BOOL p0, BOOL p1, float p2, float p3, float p4, float p5) { rage::NativeInvoke::Invoke<0x773732DA9B0D7CF8, uint32_t>(p0, p1, p2, p3, p4, p5); } // 773732DA9B0D7CF8 513D444B
 	static BOOL _0x7BACFCD96F9E7AF4(BOOL p0) { return rage::NativeInvoke::Invoke<0x7BACFCD96F9E7AF4, BOOL>(p0); } // 7BACFCD96F9E7AF4 B2410EAB
 	static uint32_t _0x2D37C1B5BFC1B3D1() { return rage::NativeInvoke::Invoke<0x2D37C1B5BFC1B3D1, uint32_t>(); } // 2D37C1B5BFC1B3D1 5AB94128
-	static BOOL _0x769682944C6C19BF(uint32_t *p0, BOOL p1) { return rage::NativeInvoke::Invoke<0x769682944C6C19BF, BOOL>(p0, p1); } // 769682944C6C19BF D63FCB3E
-	static BOOL START_PARTICLE_FX_NON_LOOPED_AT_COORD(uint32_t *p0, float p1, float p2, float p3, float p4, float p5, float p6, float p7, BOOL p8, BOOL p9, BOOL p10) { return rage::NativeInvoke::Invoke<0x6F50EB359FDCCDEF, BOOL>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10); } // 6F50EB359FDCCDEF DD79D679
+	static BOOL _0x769682944C6C19BF(const char *p0, BOOL p1) { return rage::NativeInvoke::Invoke<0x769682944C6C19BF, BOOL>(p0, p1); } // 769682944C6C19BF D63FCB3E
+	static BOOL START_PARTICLE_FX_NON_LOOPED_AT_COORD(const char *p0, float p1, float p2, float p3, float p4, float p5, float p6, float p7, BOOL p8, BOOL p9, BOOL p10) { return rage::NativeInvoke::Invoke<0x6F50EB359FDCCDEF, BOOL>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10); } // 6F50EB359FDCCDEF DD79D679
 	static uint32_t START_PARTICLE_FX_NON_LOOPED_ON_PED_BONE(uint32_t *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, uint32_t p8, float p9, BOOL p10, BOOL p11, BOOL p12) { return rage::NativeInvoke::Invoke<0x034FFC11E8AD10E0E, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12); } // 034FFC11E8AD10E0E 53DAEF4E
-	static uint32_t _0xEE231315BC96A10D(uint32_t *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, uint32_t p8, float p9, BOOL p10, BOOL p11, BOOL p12) { return rage::NativeInvoke::Invoke<0xEE231315BC96A10D, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12); } // EE231315BC96A10D 161780C1
-	static BOOL START_PARTICLE_FX_NON_LOOPED_ON_ENTITY(uint32_t *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8, BOOL p9, BOOL p10, BOOL p11) { return rage::NativeInvoke::Invoke<0x08BCDEA8221B6D08A, BOOL>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11); } // 08BCDEA8221B6D08A 9604DAD4
+	static uint32_t _0xEE231315BC96A10D(const char *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, uint32_t p8, float p9, BOOL p10, BOOL p11, BOOL p12) { return rage::NativeInvoke::Invoke<0xEE231315BC96A10D, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12); } // EE231315BC96A10D 161780C1
+	static BOOL START_PARTICLE_FX_NON_LOOPED_ON_ENTITY(const char *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8, BOOL p9, BOOL p10, BOOL p11) { return rage::NativeInvoke::Invoke<0x08BCDEA8221B6D08A, BOOL>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11); } // 08BCDEA8221B6D08A 9604DAD4
 	static void _0x4A6FD8BBD9FD972C(float p0, float p1, float p2) { rage::NativeInvoke::Invoke<0x4A6FD8BBD9FD972C, uint32_t>(p0, p1, p2); } // 4A6FD8BBD9FD972C 7B689E20
 	static void SET_PARTICLE_FX_NON_LOOPED_ALPHA(float p0) { rage::NativeInvoke::Invoke<0x59DA99BF43B66385, uint32_t>(p0); } // 59DA99BF43B66385 497EAFF2
 	static void _0xBEC45683E225C647(BOOL p0) { rage::NativeInvoke::Invoke<0xBEC45683E225C647, uint32_t>(p0); } // BEC45683E225C647
 	static uint32_t START_PARTICLE_FX_LOOPED_AT_COORD(const char *p0, float p1, float p2, float p3, float p4, float p5, float p6, float p7, BOOL p8, BOOL p9, BOOL p10, BOOL p11) { return rage::NativeInvoke::Invoke<0x3F2250BCCDDD976F, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11); } // 3F2250BCCDDD976F D348E3E6
 	static uint32_t START_PARTICLE_FX_LOOPED_ON_PED_BONE(uint32_t *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, uint32_t p8, float p9, BOOL p10, BOOL p11, BOOL p12) { return rage::NativeInvoke::Invoke<0x90FEA1BBBFEF166B, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12); } // 90FEA1BBBFEF166B F8FC196F
 	static uint32_t START_PARTICLE_FX_LOOPED_ON_ENTITY(uint32_t *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8, BOOL p9, BOOL p10, BOOL p11) { return rage::NativeInvoke::Invoke<0xB9B1EE085AEABF71, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11); } // B9B1EE085AEABF71 0D06FF62
-	static uint32_t _0x707FE98E507B694(uint32_t *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, uint32_t p8, float p9, BOOL p10, BOOL p11, BOOL p12) { return rage::NativeInvoke::Invoke<0x707FE98E507B694, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12); } // 707FE98E507B694
-	static uint32_t _0xE343AFB41847074(uint32_t *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8, BOOL p9, BOOL p10, BOOL p11) { return rage::NativeInvoke::Invoke<0xE343AFB41847074, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11); } // E343AFB41847074 110752B2
-	static uint32_t _0x93C35F05B9681A93(uint32_t *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, uint32_t p8, float p9, BOOL p10, BOOL p11, BOOL p12) { return rage::NativeInvoke::Invoke<0x93C35F05B9681A93, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12); } // 93C35F05B9681A93
+	static uint32_t _0x707FE98E507B694(const char *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, uint32_t p8, float p9, BOOL p10, BOOL p11, BOOL p12) { return rage::NativeInvoke::Invoke<0x707FE98E507B694, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12); } // 707FE98E507B694
+	static uint32_t _0xE343AFB41847074(const char *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8, BOOL p9, BOOL p10, BOOL p11) { return rage::NativeInvoke::Invoke<0xE343AFB41847074, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11); } // E343AFB41847074 110752B2
+	static uint32_t _0x93C35F05B9681A93(const char *p0, uint32_t p1, float p2, float p3, float p4, float p5, float p6, float p7, uint32_t p8, float p9, BOOL p10, BOOL p11, BOOL p12) { return rage::NativeInvoke::Invoke<0x93C35F05B9681A93, uint32_t>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12); } // 93C35F05B9681A93
 	static void STOP_PARTICLE_FX_LOOPED(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x9F5923D000431FF4, uint32_t>(p0, p1); } // 9F5923D000431FF4 D245455B
 	static void REMOVE_PARTICLE_FX(uint32_t p0, BOOL p1) { rage::NativeInvoke::Invoke<0x931F7A629AC7E1A4, uint32_t>(p0, p1); } // 931F7A629AC7E1A4 6BA48C7E
 	static void REMOVE_PARTICLE_FX_FROM_ENTITY(uint32_t p0) { rage::NativeInvoke::Invoke<0xE1D0EA3F43D19F6A, uint32_t>(p0); } // E1D0EA3F43D19F6A CEDE52E9
@@ -3467,7 +3467,10 @@ namespace GRAPHICS
 	static void _0x2E55EFBF3E8D4A36(float p0) { rage::NativeInvoke::Invoke<0x2E55EFBF3E8D4A36, uint32_t>(p0); } // 2E55EFBF3E8D4A36
 	static void _0x36F57E2F58DC1A37(BOOL p0) { rage::NativeInvoke::Invoke<0x36F57E2F58DC1A37, uint32_t>(p0); } // 36F57E2F58DC1A37
 	static void _0x717748748FFF89F1(float p0) { rage::NativeInvoke::Invoke<0x717748748FFF89F1, uint32_t>(p0); } // 717748748FFF89F1
-	static void _0x1AB70C3BEBF0BDED(float p0) { rage::NativeInvoke::Invoke<0x1AB70C3BEBF0BDED, uint32_t>(p0); } // 1AB70C3BEBF0BDED
+	static void _SET_PTFX_LOAD_NAME(const char* name) { rage::NativeInvoke::Invoke<0x0C1A9BB4AB4377D0, uint32_t>(name); } // 0D88972E26984A04F
+  static void _UNSET_PTFX_LOAD_NAME(const char* name) { rage::NativeInvoke::Invoke<0x9E60644385B460EE, uint32_t>(name); } // 9E60644385B460EE
+  static void _LOAD_PARTICLE_UNKNOWN(const char* name) { rage::NativeInvoke::Invoke<0x5563A0D3F621412B, uint32_t>(name); } // 0D88972E26984A04F
+  static void _UNLOAD_PARTICLE_UNKNOWN(const char* name) { rage::NativeInvoke::Invoke<0x0D54912F6B2C5CA0C, uint32_t>(name); } // 9E60644385B460EE
 	static void _0xE6A6C88CD85E3A42(BOOL p0) { rage::NativeInvoke::Invoke<0xE6A6C88CD85E3A42, uint32_t>(p0); } // E6A6C88CD85E3A42
 	static void _0xC1A9BB4AB4377D0(uint32_t *p0) { rage::NativeInvoke::Invoke<0xC1A9BB4AB4377D0, uint32_t>(p0); } // C1A9BB4AB4377D0
 	static void WASH_DECALS_IN_RANGE(uint32_t p0, uint32_t p1, uint32_t p2, uint32_t p3, uint32_t p4) { rage::NativeInvoke::Invoke<0xC1923CD2A99ABE71, uint32_t>(p0, p1, p2, p3, p4); } // C1923CD2A99ABE71 DEECBC57

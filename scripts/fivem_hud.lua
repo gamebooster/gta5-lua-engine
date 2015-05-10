@@ -26,40 +26,35 @@ function OnScriptTick()
     if ui._IS_HEAD_DISPLAY_ID_VALID(head_display.id) == 0 then
       table.remove(head_ups, head_i)
     else
-      ui._SET_HEAD_DISPLAY_STRING(head_display.id, player.GET_PLAYER_NAME(head_display.player_id))
+      ui._SET_HEAD_DISPLAY_STRING(head_display.id, head_display.player_name)
       ui._SET_HEAD_DISPLAY_FLAG(head_display.id, flags.NAME, 1)
       ui._SET_HEAD_DISPLAY_FLAG(head_display.id, flags.HEALTH_BAR, 1)
     end
   end
 
-  if player_count ~= player.GET_NUMBER_OF_PLAYERS() then
-    player_count = player.GET_NUMBER_OF_PLAYERS()
-	  gui.AddLog("player_count " .. player_count)
   
-	  for i = 0, MAX_PLAYERS, 1 do
-      if player.GET_PLAYER_PED(i) > 0 then
-        
-        local ped_id = player.GET_PLAYER_PED(i)
-        gui.AddLog("ped_id " .. ped_id)
-        
-        if ui.GET_BLIP_FROM_ENTITY(ped_id) == 0 and ped_id ~= player.PLAYER_PED_ID() then
-          local head_display_id = ui._CREATE_PED_HEAD_DISPLAY(ped_id, "", 0, 0, "", 0)
-          if ui._IS_HEAD_DISPLAY_ID_VALID(head_display_id) == 1 then
-            table.insert(head_ups, { id = head_display_id, player_id = i })
-          end
-        
-          if ped_id ~= player.PLAYER_PED_ID() then
-            local blip_id = ui.ADD_BLIP_FOR_ENTITY(ped_id)
-            gui.AddLog("blip_id " .. blip_id)
-            ui.SET_BLIP_SPRITE(blip_id, 1)
-            ui.SET_BLIP_SCALE(blip_id, 1)
-            ui.SET_BLIP_PRIORITY(blip_id, 13)
-            ui.SET_BLIP_NAME_TO_PLAYER_NAME(blip_id, i)
-            ui.SET_BLIP_ALPHA(blip_id, 255)
-          end
+  for i = 0, MAX_PLAYERS, 1 do
+    if player.GET_PLAYER_PED(i) > 0 then
+      
+      local ped_id = player.GET_PLAYER_PED(i)
+      
+      if ui.GET_BLIP_FROM_ENTITY(ped_id) == 0 and ped_id ~= player.PLAYER_PED_ID() then
+        local head_display_id = ui._CREATE_PED_HEAD_DISPLAY(ped_id, "", 0, 0, "", 0)
+        if ui._IS_HEAD_DISPLAY_ID_VALID(head_display_id) == 1 then
+          table.insert(head_ups, { id = head_display_id, player_name = player.GET_PLAYER_NAME(i) })
+        end
+      
+        if ped_id ~= player.PLAYER_PED_ID() then
+          local blip_id = ui.ADD_BLIP_FOR_ENTITY(ped_id)
+          gui.AddLog("blip_id " .. blip_id)
+          ui.SET_BLIP_SPRITE(blip_id, 1)
+          ui.SET_BLIP_SCALE(blip_id, 1)
+          ui.SET_BLIP_PRIORITY(blip_id, 13)
+          ui.SET_BLIP_NAME_TO_PLAYER_NAME(blip_id, i)
+          ui.SET_BLIP_ALPHA(blip_id, 255)
         end
       end
-	  end
+    end
   end
 end
 

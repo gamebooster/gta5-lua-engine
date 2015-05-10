@@ -2,3 +2,4 @@ teleport_menu.lua
 test_menu.lua
 vehicle_menu.lua
 player_menu.lua
+fivem_hud.lua

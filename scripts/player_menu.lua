@@ -10,6 +10,7 @@ local wants_money = false
 local explode_car = false
 local wants_teleport_to = false
 local kick_player = false
+local teleport_to_player = false
 
 function OnScriptTick()
   for i = 0, MAX_PLAYERS, 1 do
@@ -51,6 +52,12 @@ function OnScriptTick()
 	  if players[i].selected and kick_player then
 	    network.NETWORK_SESSION_KICK_PLAYER(i)
 	  end
+    
+    if players[i].selected and teleport_to_player then
+	    local vec = entity.GET_ENTITY_COORDS(player.PLAYER_PED_ID(), 1)
+      entity.SET_ENTITY_COORDS(player.GET_PLAYER_PED(i), vec.x + 1, vec.y, vec.z, 1, 1, 1, 1)
+	  end
+    
 
 	  if players[i].selected and wants_money then
 	    local vec = entity.GET_ENTITY_COORDS(player.GET_PLAYER_PED(i), 1)
@@ -72,6 +79,7 @@ function OnScriptTick()
   explode_car = false
   wants_teleport_to = false
   kick_player = false
+  teleport_to_player = false
 end
 
 function OnDrawTick()
@@ -99,6 +107,9 @@ function OnDrawTick()
 	if gui.Button("Kick player") then
 	  kick_player = true
 	end
+  if gui.Button("teleport_to_player") then
+    teleport_to_player = true
+  end
 	players_filter:Draw("Filter", -1)
 	for i = 0, MAX_PLAYERS, 1 do
 	  if players[i].active and players_filter:PassFilter(players[i].name) and gui.Selectable(players[i].name .. " " .. tostring(players[i].vehicle), players[i].selected) then

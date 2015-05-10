@@ -1817,6 +1817,7 @@ namespace lua {
 			.addFunction("ADD_AMMO_TO_PED", &ADD_AMMO_TO_PED)
 			.addFunction("SET_PED_AMMO", &SET_PED_AMMO)
 			.addFunction("SET_PED_INFINITE_AMMO", &SET_PED_INFINITE_AMMO)
+      .addFunction("_0x149174181F6271F0", &_0x149174181F6271F0)
 			.addFunction("GIVE_WEAPON_TO_PED", &GIVE_WEAPON_TO_PED)
 			.addFunction("GIVE_DELAYED_WEAPON_TO_PED", &GIVE_DELAYED_WEAPON_TO_PED)
 			.addFunction("REMOVE_ALL_PED_WEAPONS", &REMOVE_ALL_PED_WEAPONS)
@@ -1837,7 +1838,10 @@ namespace lua {
 			.addFunction("SET_PED_AMMO_BY_TYPE", &SET_PED_AMMO_BY_TYPE)
 			.addFunction("GET_PED_AMMO_BY_TYPE", &GET_PED_AMMO_BY_TYPE)
 			.addFunction("SET_PED_AMMO_TO_DROP", &SET_PED_AMMO_TO_DROP)
-			.addFunction("GET_PED_LAST_WEAPON_IMPACT_COORD", &GET_PED_LAST_WEAPON_IMPACT_COORD)
+			.addFunction("GET_PED_LAST_WEAPON_IMPACT_COORD", [](uint32_t ped_id) {
+        rage::scrVector out;
+        return std::tuple<bool, rage::scrVector>(GET_PED_LAST_WEAPON_IMPACT_COORD(ped_id, &out), out);
+		  })
 			.addFunction("SET_PED_GADGET", &SET_PED_GADGET)
 			.addFunction("GET_SELECTED_PED_WEAPON", &GET_SELECTED_PED_WEAPON)
 			.addFunction("EXPLODE_PROJECTILES", &EXPLODE_PROJECTILES)
@@ -1930,6 +1934,8 @@ namespace lua {
 			.addFunction("REQUEST_PTFX_ASSET", &REQUEST_PTFX_ASSET)
 			.addFunction("HAS_PTFX_ASSET_LOADED", &HAS_PTFX_ASSET_LOADED)
 			.addFunction("REMOVE_PTFX_ASSET", &REMOVE_PTFX_ASSET)
+      .addFunction("_REQUEST_DLC_PTFX", &_REQUEST_DLC_PTFX)
+      .addFunction("_HAS_DLC_PTFX_LOADED", &_HAS_DLC_PTFX_LOADED)
 			.addFunction("SET_VEHICLE_POPULATION_BUDGET", &SET_VEHICLE_POPULATION_BUDGET)
 			.addFunction("SET_PED_POPULATION_BUDGET", &SET_PED_POPULATION_BUDGET)
 			.addFunction("CLEAR_FOCUS", &CLEAR_FOCUS)
@@ -2242,6 +2248,9 @@ namespace lua {
 			.addFunction("START_PARTICLE_FX_LOOPED_AT_COORD", &START_PARTICLE_FX_LOOPED_AT_COORD)
 			.addFunction("START_PARTICLE_FX_LOOPED_ON_PED_BONE", &START_PARTICLE_FX_LOOPED_ON_PED_BONE)
 			.addFunction("START_PARTICLE_FX_LOOPED_ON_ENTITY", &START_PARTICLE_FX_LOOPED_ON_ENTITY)
+      .addFunction("_0x707FE98E507B694", &_0x707FE98E507B694)
+      .addFunction("_0xE343AFB41847074", &_0xE343AFB41847074)
+      .addFunction("_0x93C35F05B9681A93", &_0x93C35F05B9681A93)
 			.addFunction("STOP_PARTICLE_FX_LOOPED", &STOP_PARTICLE_FX_LOOPED)
 			.addFunction("REMOVE_PARTICLE_FX", &REMOVE_PARTICLE_FX)
 			.addFunction("REMOVE_PARTICLE_FX_FROM_ENTITY", &REMOVE_PARTICLE_FX_FROM_ENTITY)
@@ -2255,6 +2264,7 @@ namespace lua {
 			.addFunction("SET_PARTICLE_FX_CAM_INSIDE_VEHICLE", &SET_PARTICLE_FX_CAM_INSIDE_VEHICLE)
 			.addFunction("SET_PARTICLE_FX_BLOOD_SCALE", &SET_PARTICLE_FX_BLOOD_SCALE)
 			.addFunction("SET_CAMERA_ENDTIME", &SET_CAMERA_ENDTIME)
+      .addFunction("_SET_PTFX_LOAD_NAME", &_SET_PTFX_LOAD_NAME)
 			.addFunction("WASH_DECALS_IN_RANGE", &WASH_DECALS_IN_RANGE)
 			.addFunction("WASH_DECALS_FROM_VEHICLE", &WASH_DECALS_FROM_VEHICLE)
 			.addFunction("FADE_DECALS_IN_RANGE", &FADE_DECALS_IN_RANGE)
@@ -2634,6 +2644,27 @@ namespace lua {
 			.addFunction("NETWORK_SESSION_HOST_FRIENDS_ONLY", &NETWORK_SESSION_HOST_FRIENDS_ONLY)
 			.addFunction("NETWORK_SESSION_END", &NETWORK_SESSION_END)
 			.addFunction("NETWORK_SESSION_KICK_PLAYER", &NETWORK_SESSION_KICK_PLAYER)
+      .addFunction("_0x7D76E3EA9E082DD9", &_0x7D76E3EA9E082DD9)
+      .addFunction("_0x197559FB40270739", &_0x197559FB40270739)
+      .addFunction("_0x74B9283A24EF798E", &_0x74B9283A24EF798E)
+      .addFunction("_0x24E01D4C14E3F20E", &_0x24E01D4C14E3F20E)
+      .addFunction("_0x581E51DE9A868E89", &_0x581E51DE9A868E89)
+      .addFunction("_0xA72830288D44B063", &_0xA72830288D44B063)
+      .addFunction("_0x80571E35A63416EB", &_0x80571E35A63416EB)
+      .addFunction("_0xC354BCDF219C192", &_0xC354BCDF219C192)
+      .addFunction("_0xE365A413E4AB79B1", &_0xE365A413E4AB79B1)
+      .addFunction("_0xDFFFF8FA5D87115", &_0xDFFFF8FA5D87115)
+      .addFunction("_0xC956F5FBF50C5B4D", &_0xC956F5FBF50C5B4D)
+      .addFunction("_0xE537E3D1B3ED07C", &_0xE537E3D1B3ED07C)
+      .addFunction("_0xA0893682894A5DFA", &_0xA0893682894A5DFA)
+      .addFunction("_0xD8EEE077FEF5D2EE", &_0xD8EEE077FEF5D2EE)
+      .addFunction("_0x959D08A2A2C7D17F", &_0x959D08A2A2C7D17F)
+      .addFunction("_0xE99A27946CE8E1D3", &_0xE99A27946CE8E1D3)
+      .addFunction("_0x05E1485B5338AE56B", &_0x05E1485B5338AE56B)
+      .addFunction("_0x41B5A23A4D978CAE", &_0x41B5A23A4D978CAE)
+      .addFunction("_0xCF25B7144365B6C4", &_0xCF25B7144365B6C4)
+      .addFunction("_0x6FEC4B4CC9D4DE3B", &_0x6FEC4B4CC9D4DE3B)
+      .addFunction("_0x71BCDC2206204346", &_0x71BCDC2206204346)
 			.addFunction("NETWORK_IS_FINDING_GAMERS", &NETWORK_IS_FINDING_GAMERS)
 			.addFunction("NETWORK_GET_NUM_FOUND_GAMERS", &NETWORK_GET_NUM_FOUND_GAMERS)
 			.addFunction("NETWORK_GET_FOUND_GAMER", &NETWORK_GET_FOUND_GAMER)
@@ -3030,11 +3061,13 @@ namespace lua {
 		RegisterNativeMOBILEFunctions(state);
 		RegisterNativePATHFINDFunctions(state);
 		RegisterNativeSYSTEMFunctions(state);
-
+    RegisterNativeFIREFunctions(state);
 
 		RegisterUserInterfaceFunctions(state);
 
 		LuaIntf::LuaBinding(state).beginClass<rage::scrVector>("Vector")
+      .addConstructor(LUA_ARGS())
+      .addConstructor(LUA_ARGS(float, float ,float))
 			.addVariable("x", &rage::scrVector::x)
 			.addVariable("y", &rage::scrVector::y)
 			.addVariable("z", &rage::scrVector::z)

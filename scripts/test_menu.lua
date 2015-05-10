@@ -33,6 +33,17 @@ local is_host = false
 local displays = {}
 local MAX_PLAYERS = 32
 
+function GetCoordsBeforePed(distance)	
+  local coords = entity.GET_ENTITY_COORDS(player.PLAYER_PED_ID(), 1)
+  local forward = entity.GET_ENTITY_FORWARD_VECTOR(player.PLAYER_PED_ID())
+
+
+  coords.x = coords.x + forward.x * distance
+  coords.y = coords.y + forward.y * distance
+
+	return coords
+end
+
 function OnScriptTick()
   is_host = network.NETWORK_IS_HOST()
 
@@ -41,53 +52,53 @@ function OnScriptTick()
     --test.SendTextMessage(player.PLAYER_ID(), '<img src="img://ClanTexture17801373_2/ClanTexture17801373_2">')
 	--counter = counter + 1
   end
-  -- if gui.KeyPressed(KEY_9) then
-    -- explode_near_car = true
-  -- end
 
   if give_weapons then
     for i, weapon_name in pairs(weapons) do
 	  local hash = gameplay.GET_HASH_KEY(weapon_name)
 	  if hash ~= 0 then
 	    weapon.GIVE_DELAYED_WEAPON_TO_PED(player.PLAYER_PED_ID(), hash, 999, 1)
+      weapon.SET_PED_INFINITE_AMMO(player.PLAYER_PED_ID(), 1, hash)
+      weapon.SET_AMMO_IN_CLIP(player.PLAYER_PED_ID(), hash, 100);
+      weapon._0x149174181F6271F0(player.PLAYER_PED_ID(), 1)
 	  end
 	end
   end
   
   if test_overlay or gui.KeyPressed(KEY_1) then
-  gameplay.SET_THIS_SCRIPT_CAN_REMOVE_BLIPS_CREATED_BY_ANY_SCRIPT(1)
-    --network_id = network.PARTICIPANT_ID_TO_INT()
-	
-	for i = 0, 32, 1 do
-      if player.GET_PLAYER_PED(i) > 0 and ui._ARE_HEAD_DISPLAYS_READY() then
-	  
-	  	local ped_id = player.GET_PLAYER_PED(i)
-		
-		if ui.GET_BLIP_FROM_ENTITY(ped_id) == 0 then
-			local blip_id = ui.ADD_BLIP_FOR_ENTITY(ped_id)
-			ui.SET_BLIP_SPRITE(blip_id, 1)
-			ui.SET_BLIP_SCALE(blip_id, 1)
-			ui.SET_BLIP_PRIORITY(blip_id, 13);
-			ui.SET_BLIP_NAME_TO_PLAYER_NAME(blip_id, i);
-			ui.SET_BLIP_ALPHA(blip_id, 255);
-		end
-
-	    local network_id = ui._CREATE_PED_HEAD_DISPLAY(player.GET_PLAYER_PED(i), "", 0, 0, "", 0)
-		ui._SET_HEAD_DISPLAY_STRING(network_id, player.GET_PLAYER_NAME(i))
-		ui._SET_HEAD_DISPLAY_FLAG(network_id, 0, 1)
-	    displays[i].active = ui._IS_HEAD_DISPLAY_ID_VALID(network_id)
-		displays[i].head_id = network_id
-	  end
-	end
+  
+    -- network._0xE365A413E4AB79B1(0)
+    -- network._0xDFFFF8FA5D87115(0)
+    -- network._0xC956F5FBF50C5B4D(1)
+  
+    network.NETWORK_SET_FRIENDLY_FIRE_OPTION(1)
+    local vec = GetCoordsBeforePed(5)
+        for i = 0, 32, 1 do
+      if player.GET_PLAYER_PED(i) > 0 then
+              ped.SET_CAN_ATTACK_FRIENDLY(player.GET_PLAYER_PED(i), 1, 0)
+      end
+      end
+    for i = 0, 32, 1 do
+      if player.GET_PLAYER_PED(i) > 0 and player.PLAYER_PED_ID() ~= player.GET_PLAYER_PED(i) then
+        --ai.CLEAR_PED_TASKS_IMMEDIATELY(player.GET_PLAYER_PED(i))
+        entity.SET_ENTITY_COLLISION(player.GET_PLAYER_PED(i), 1, 0);
+        entity.FREEZE_ENTITY_POSITION(player.GET_PLAYER_PED(i), 0);
+        ped.SET_PED_CAN_BE_TARGETTED(player.GET_PLAYER_PED(i), 1);
+        local vec = entity.GET_ENTITY_COORDS(player.GET_PLAYER_PED(i), 1)
+        fire.ADD_EXPLOSION(vec.x + 1, vec.y, vec.z, 1, 19, 0, 1, 0)
+        fire.ADD_EXPLOSION(vec.x + 1, vec.y, vec.z, 13, 19, 0, 1, 0)
+        fire.ADD_EXPLOSION(vec.x + 1, vec.y, vec.z, 41, 19, 0, 1, 0)
+        fire.ADD_EXPLOSION(vec.x + 1, vec.y, vec.z, 42, 19, 0, 1, 0)
+        fire.ADD_EXPLOSION(vec.x + 1, vec.y, vec.z, 3, 19, 0, 1, 0)
+        fire.ADD_EXPLOSION(vec.x + 1, vec.y, vec.z, 12, 19, 0, 1, 0)
+        fire.START_ENTITY_FIRE(player.GET_PLAYER_PED(i))
+      end
+    end
   end
   
   if want_resurrect then
     local vec = entity.GET_ENTITY_COORDS(player.PLAYER_PED_ID(), 1)
     network.NETWORK_RESURRECT_LOCAL_PLAYER(vec.x, vec.y, vec.z, 0, 0, 1, 1);
-    --ped.REVIVE_INJURED_PED(player.PLAYER_PED_ID())
-    --ped.RESURRECT_PED(player.PLAYER_PED_ID())
-    ----entity.SET_ENTITY_HEALTH(player.PLAYER_PED_ID(), 1000)
-    --player.SET_PLAYER_INVINCIBLE(player.PLAYER_ID(), 1)
   end
   
   if warp_into_car then
@@ -125,10 +136,6 @@ function OnDrawTick()
   if gui.TreeNode("Test") then
   
     changed, slider_counter = gui.SliderInt("test", slider_counter, 0, 10)
-	if changed or display_text then
-	  display_text = true
-	  gui.Text(tostring(changed) .. " " .. slider_counter)
-	end
 
 	if gui.Button("Explode near car") then
 	  explode_near_car = true
@@ -136,12 +143,6 @@ function OnDrawTick()
 	
 	if gui.Button("test_overlay") then
 	  test_overlay = true
-	end
-	
-	for i = 0, MAX_PLAYERS, 1 do
-	  if gui.Selectable(tostring(i) .. " " .. tostring(displays[i].head_id), displays[i].selected) then
-	    displays[i].selected = not displays[i].selected
-	  end
 	end
 	
 	if gui.Button("Warp into near car") then
@@ -161,9 +162,4 @@ function OnDrawTick()
 end
 
 function Initialize()
-
-  for i = 0, MAX_PLAYERS, 1 do
-    displays[i] = {}
-	displays[i].selected = false
-  end
 end
