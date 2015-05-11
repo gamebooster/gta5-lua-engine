@@ -57,7 +57,7 @@ end
 function RequestControlEntity(entity)
 	local tick = 0
 
-	while network.NETWORK_HAS_CONTROL_OF_ENTITY(entity) == 0 and tick <= 12 do
+	while network.NETWORK_HAS_CONTROL_OF_ENTITY(entity) == false and tick <= 12 do
 		network.NETWORK_REQUEST_CONTROL_OF_ENTITY(entity)
 		tick = tick + 1
 	end
@@ -73,7 +73,7 @@ function OnScriptTick()
 	  end
 	end
   
-  if player.IS_PLAYER_FREE_AIMING(player.PLAYER_ID()) == 0 then
+  if player.IS_PLAYER_FREE_AIMING(player.PLAYER_ID()) == false then
 	  grav_target_locked = false
     return
 	end
@@ -87,15 +87,15 @@ function OnScriptTick()
     grav_target_locked = true
 	end
 
-  if entity.IS_ENTITY_A_PED(grav_entity) == 1 and ped.IS_PED_IN_ANY_VEHICLE(grav_entity, 1) == 1 then
+  if entity.IS_ENTITY_A_PED(grav_entity) and ped.IS_PED_IN_ANY_VEHICLE(grav_entity, 1) then
 		grav_entity = ped.GET_VEHICLE_PED_IS_IN(grav_entity, 0)
   end
 	  
-	if network.NETWORK_HAS_CONTROL_OF_ENTITY(RequestControlEntity(grav_entity)) == 0 then return end
+	if network.NETWORK_HAS_CONTROL_OF_ENTITY(RequestControlEntity(grav_entity)) == false then return end
   
   local coords = GetCoordsFromCam(6)
 
-  -- if graphics.DOES_PARTICLE_FX_LOOPED_EXIST(grav_partfx) == 0 then	
+  -- if graphics.DOES_PARTICLE_FX_LOOPED_EXIST(grav_partfx) == false then	
     -- streaming.REQUEST_PTFX_ASSET()
     -- if streaming.HAS_PTFX_ASSET_LOADED() == 1 then
     
@@ -113,7 +113,7 @@ function OnScriptTick()
   
   --entity.APPLY_FORCE_TO_ENTITY(grav_entity, 1, math.random(0, 1), math.random(0, 1), math.random(0, 1), 0, 0, 0, 0, 1, 1, 1, 0, 1)
   
-  if ped.IS_PED_SHOOTING(player.PLAYER_PED_ID()) == 1 then
+  if ped.IS_PED_SHOOTING(player.PLAYER_PED_ID()) then
     audio.PLAY_SOUND_FROM_ENTITY(-1, "Foot_Swish", grav_entity, "docks_heist_finale_2a_sounds", 0, 0)
     entity.SET_ENTITY_HEADING(grav_entity, entity.GET_ENTITY_HEADING(player.PLAYER_PED_ID()))
     local direction = GetDirectionFromCam()

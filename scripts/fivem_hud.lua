@@ -23,7 +23,7 @@ local flags = {
 
 function OnScriptTick()
   for head_i,head_display in pairs(head_ups) do
-    if ui._IS_HEAD_DISPLAY_ID_VALID(head_display.id) == 0 then
+    if ui._IS_HEAD_DISPLAY_ID_VALID(head_display.id) == false then
       table.remove(head_ups, head_i)
     else
       ui._SET_HEAD_DISPLAY_STRING(head_display.id, head_display.player_name)
@@ -40,7 +40,7 @@ function OnScriptTick()
       
       if ui.GET_BLIP_FROM_ENTITY(ped_id) == 0 and ped_id ~= player.PLAYER_PED_ID() then
         local head_display_id = ui._CREATE_PED_HEAD_DISPLAY(ped_id, "", 0, 0, "", 0)
-        if ui._IS_HEAD_DISPLAY_ID_VALID(head_display_id) == 1 then
+        if ui._IS_HEAD_DISPLAY_ID_VALID(head_display_id) then
           table.insert(head_ups, { id = head_display_id, player_name = player.GET_PLAYER_NAME(i) })
         end
       

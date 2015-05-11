@@ -39,7 +39,7 @@ function OnScriptTick()
         local player_ped = player.GET_PLAYER_PED(i)
 
         streaming.REQUEST_MODEL(skin_hash)
-        if streaming.HAS_MODEL_LOADED(skin_hash) == 0 then
+        if streaming.HAS_MODEL_LOADED(skin_hash) == false then
           return
         end
         for spawn_i = 0 , spawn_count , 1 do

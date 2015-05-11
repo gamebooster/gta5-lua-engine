@@ -57,7 +57,7 @@ end
 function RequestControlEntity(entity)
 	local tick = 0
 
-	while network.NETWORK_HAS_CONTROL_OF_ENTITY(entity) == 0 and tick <= 12 do
+	while network.NETWORK_HAS_CONTROL_OF_ENTITY(entity) == false and tick <= 12 do
 		network.NETWORK_REQUEST_CONTROL_OF_ENTITY(entity)
 		tick = tick + 1
 	end
@@ -81,7 +81,7 @@ function OnScriptTick()
 		    network.SET_NETWORK_ID_EXISTS_ON_ALL_MACHINES(net_id, 1)
         audio.PLAY_SOUND_FROM_ENTITY(-1, "Foot_Swish", vehicle_id, "docks_heist_finale_2a_sounds", 0, 0)
         entity.SET_ENTITY_HEADING(vehicle_id, entity.GET_ENTITY_HEADING(player.PLAYER_PED_ID()))
-        if network.NETWORK_HAS_CONTROL_OF_ENTITY(RequestControlEntity(vehicle_id)) == 0 then return end
+        if network.NETWORK_HAS_CONTROL_OF_ENTITY(RequestControlEntity(vehicle_id)) == false then return end
         local direction = GetDirectionFromCam()
         entity.APPLY_FORCE_TO_ENTITY(vehicle_id, 1, 0, 150 + math.abs(direction.y) * 50, direction.z * 130, 0, 0, 0, 0, 1, 1, 1, 0, 1)
         system.WAIT(10)

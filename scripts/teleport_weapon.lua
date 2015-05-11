@@ -57,7 +57,7 @@ end
 function RequestControlEntity(entity)
 	local tick = 0
 
-	while network.NETWORK_HAS_CONTROL_OF_ENTITY(entity) == 0 and tick <= 12 do
+	while network.NETWORK_HAS_CONTROL_OF_ENTITY(entity) == false and tick <= 12 do
 		network.NETWORK_REQUEST_CONTROL_OF_ENTITY(entity)
 		tick = tick + 1
 	end
@@ -67,11 +67,11 @@ end
 local stungun_hash = gameplay.GET_HASH_KEY("weapon_stungun")
 
 function OnScriptTick()
-  -- if player.IS_PLAYER_FREE_AIMING(player.PLAYER_ID()) == 0 then
+  -- if player.IS_PLAYER_FREE_AIMING(player.PLAYER_ID()) == false then
 	 -- grav_target_locked = false
    -- return
 	-- end
-if ped.IS_PED_SHOOTING(player.PLAYER_PED_ID()) == 1 then
+if ped.IS_PED_SHOOTING(player.PLAYER_PED_ID()) then
      local success, coords = weapon.GET_PED_LAST_WEAPON_IMPACT_COORD(player.PLAYER_PED_ID())
      if success then
       --``` success, coords = weapon.GET_PED_LAST_WEAPON_IMPACT_COORD(player.PLAYER_PED_ID())

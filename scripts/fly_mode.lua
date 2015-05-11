@@ -10,15 +10,15 @@ end
 
 function OnScriptTick()
   if gui.KeyPressed(KEY_H) then
-      local hash = gameplay.GET_HASH_KEY(parachute_id)
+    local hash = gameplay.GET_HASH_KEY(parachute_id)
 	  weapon.GIVE_DELAYED_WEAPON_TO_PED(player.PLAYER_PED_ID(), hash, 1, 1)
-      player.SET_PLAYER_INVINCIBLE(player.PLAYER_ID(), 1)
+    player.SET_PLAYER_INVINCIBLE(player.PLAYER_ID(), 1)
 	  ai.CLEAR_PED_TASKS(player.PLAYER_PED_ID())
-      ped.SET_PED_TO_RAGDOLL_WITH_FALL(player.PLAYER_PED_ID(), 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
+    ped.SET_PED_TO_RAGDOLL_WITH_FALL(player.PLAYER_PED_ID(), 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
 	  ApplyForceToEntity(player.PLAYER_PED_ID(), 0, 10)
   end
   
-  if entity.IS_ENTITY_IN_AIR(player.PLAYER_PED_ID()) == 1 and ped.IS_PED_RAGDOLL(player.PLAYER_PED_ID()) == 0 then  
+  if entity.IS_ENTITY_IN_AIR(player.PLAYER_PED_ID()) and ped.IS_PED_RAGDOLL(player.PLAYER_PED_ID()) == false then  
     if gui.KeyPressed(KEY_W) then
 	  ApplyForceToEntity(player.PLAYER_PED_ID(), 3, 0)
 	end

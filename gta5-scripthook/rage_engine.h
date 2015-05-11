@@ -245,6 +245,11 @@ public:
 		{
 			return *reinterpret_cast<T*>(m_TempStack);
 		}
+
+    template <>
+    inline void GetResult() {
+      
+    }
 	};
 
 	struct NativeFunctionSort {
