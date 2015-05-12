@@ -2,22 +2,25 @@
 #include "Hooking.h"
 #include "Hooking.Patterns.h"
 
+
 uint64_t rage::GetNativeHandler(uint64_t function_hash) {
-	if (rage::g_registrationTable == 0)
+  static uint64_t g_registrationTable;
+
+	if (g_registrationTable == 0)
 	{
 		char* location = hook::pattern("76 61 49 8B 7A 40 48 8D 0D").count(1).get(0).get<char>(9);
-		rage::g_registrationTable = reinterpret_cast<decltype(rage::g_registrationTable)>(location + *(int32_t*)location + 4);
-		utils::Log(L"ScriptHook: g_registrationTable %llx", rage::g_registrationTable);
+    g_registrationTable = reinterpret_cast<decltype(g_registrationTable)>(location + *(int32_t*)location + 4);
+		utils::Log(L"ScriptHook: g_registrationTable %llx", g_registrationTable);
 	}
 
 	uint8_t sort = function_hash;
 
-	if (reinterpret_cast<uint64_t*>(rage::g_registrationTable + sort * 8) == nullptr) {
+	if (reinterpret_cast<uint64_t*>(g_registrationTable + sort * 8) == nullptr) {
 		utils::Log(L"ScriptHook: unknown hash %llx \n", function_hash);
 		return 0;
 	}
 
-	rage::NativeFunctionSort* sort_struct = *reinterpret_cast<rage::NativeFunctionSort**>(rage::g_registrationTable + sort * 8);
+	rage::NativeFunctionSort* sort_struct = *reinterpret_cast<rage::NativeFunctionSort**>(g_registrationTable + sort * 8);
 
 	while (sort_struct) {
 		for (uint64_t i = 0; i < sort_struct->num_functions; i++) {

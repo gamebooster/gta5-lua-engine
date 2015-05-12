@@ -195,15 +195,13 @@ public:
 			ArgSize = 8,
 		};
 
-		// Anything temporary that we need
 		uint8_t m_TempStack[MaxNativeParams * ArgSize];
 
 	public:
 		inline NativeContext()
 		{
 			m_pArgs = &m_TempStack;
-			m_pReturn = &m_TempStack;		// It's okay to point both args and return at 
-			// the same pointer. The game should handle this.
+			m_pReturn = &m_TempStack;
 			m_nArgCount = 0;
 			m_nDataCount = 0;
 		}
@@ -225,20 +223,10 @@ public:
 			m_nArgCount++;
 		}
 
-		inline void Reverse()
-		{
-			uintptr_t tempValues[MaxNativeParams];
-			uintptr_t* args = (uintptr_t*)m_pArgs;
-
-			for (uint32_t i = 0; i < m_nArgCount; i++)
-			{
-				int target = m_nArgCount - i - 1;
-
-				tempValues[target] = args[i];
-			}
-
-			memcpy(m_TempStack, tempValues, sizeof(m_TempStack));
-		}
+    template <typename T>
+    inline T GetDataResult(uint8_t index) {
+      return reinterpret_cast<T>(((uint64_t)this) + 0x10 * (index + 4));
+    }
 
 		template <typename T>
 		inline T GetResult()
@@ -260,18 +248,11 @@ public:
 	};
 
 
-	static uint64_t g_registrationTable = 0;
-
-
 	uint64_t GetNativeHandler(uint64_t function_hash);
-	struct pass
-	{
-		template<typename ...T> pass(T...) {}
-	};
 
 	class NativeInvoke
 	{
-	private:
+  public:
 		static inline void Invoke(NativeContext *cxt, uint64_t hash)
 		{
 			typedef void(__cdecl * NativeHandler)(NativeContext* context);
@@ -282,8 +263,6 @@ public:
 				fn(cxt);
 			}
 		}
-
-	public:
 
 		template<uint64_t Hash>
 		static inline void Invoke()
@@ -583,25 +562,6 @@ public:
 			Invoke(&cxt, Hash);
 			return cxt.GetResult<R>();
 		}
-
-
-		//template<uint64_t Hash, typename R, typename... Args>
-		//static inline R Invoke(Args... args)
-		//{
-		//	NativeContext cxt;
-
-		//	pass{ ([&]()
-		//	{
-		//		cxt.Push(args);
-		//	}(), 1)... };
-
-		//	// reverse the order of the list since the pass method pushes in reverse
-		//	
-
-		//	Invoke(&cxt, Hash);
-
-		//	return cxt.GetResult<R>();
-		//}
 	};
 
 	struct scrVector

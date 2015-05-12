@@ -2777,8 +2777,9 @@ namespace lua {
     .addFunction("GET_PED_AMMO_BY_TYPE", &GET_PED_AMMO_BY_TYPE)
     .addFunction("SET_PED_AMMO_TO_DROP", &SET_PED_AMMO_TO_DROP)
     .addFunction("GET_PED_LAST_WEAPON_IMPACT_COORD", [](uint32_t ped_id) {
-      rage::scrVector out;
-      return std::tuple<bool, rage::scrVector>(GET_PED_LAST_WEAPON_IMPACT_COORD(ped_id, &out), out);
+      float out[4];
+      bool result = GET_PED_LAST_WEAPON_IMPACT_COORD(ped_id, out);
+      return std::tuple<bool, float, float, float, float>(result, out[0], out[1], out[2], out[3]);
     })
     .addFunction("SET_PED_GADGET", &SET_PED_GADGET)
     .addFunction("GET_SELECTED_PED_WEAPON", &GET_SELECTED_PED_WEAPON)

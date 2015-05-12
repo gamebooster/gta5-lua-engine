@@ -1,6 +1,6 @@
 #pragma once
-#include "natives.h"
 #include <vector>
+#include "common_helpers.h"
 
 #define IM_ARRAYSIZE(_ARR)          ((int)(sizeof(_ARR)/sizeof(*_ARR)))
 
@@ -60,7 +60,7 @@ public:
   }
 
   void    AddLog(const char* fmt, ...) {
-    if (items.size() > 30) ClearLog();
+    if (items.size() > 60) ClearLog();
 
     char buf[1024];
     va_list args;

@@ -3,6 +3,7 @@
 #define Vector3 rage::scrVector
 
 #include "../gta5-scripthook/rage_engine.h"
+#include "console.h"
 
 using N = rage::NativeInvoke;
 
@@ -2790,7 +2791,13 @@ namespace WEAPON
   static void SET_PED_AMMO_TO_DROP(uint32_t p0, uint32_t p1) { N::Invoke<0x395B0BA0616F847C, void>(p0, p1); } // A4EFEF9440A5B0EF 2386A307
   static void _0x497AA8F1AEB81ABD(float p0) { N::Invoke<0x497AA8F1AEB81ABD, void>(p0); } // E620FD3512A04F18 D6460EA2
   static uint32_t _0x46876FC049FB1DBA(uint32_t p0, uint32_t p1) { return N::Invoke<0x46876FC049FB1DBA, uint32_t>(p0, p1); } // 7FEAD38B326B9F74 09337863
-  static bool GET_PED_LAST_WEAPON_IMPACT_COORD(uint32_t p0, Vector3* p1) { return N::Invoke<0x12AA7FF0D68549E2, uint32_t>(p0, p1); } // 6C4D0409BA1A2BC2 9B266079
+  static bool GET_PED_LAST_WEAPON_IMPACT_COORD(uint32_t p0, float out[4]) {
+    rage::scrVector in;
+    rage::NativeContext cxt;
+    cxt.Push(p0); cxt.Push(&in);
+    N::Invoke(&cxt, 0x12AA7FF0D68549E2);
+    std::copy(cxt.GetDataResult<float*>(0), cxt.GetDataResult<float*>(0) + 4, out);
+    return cxt.GetResult<bool>(); } // 6C4D0409BA1A2BC2 9B266079
   static void SET_PED_GADGET(uint32_t p0, uint32_t p1, bool p2) { N::Invoke<0x2D8ABC8CC825C578, void>(p0, p1, p2); } // D0D7B1E680ED4A1A 8A256D0A
   static bool _0xCB79AB67F7DF0E8F(uint32_t p0, uint32_t p1) { return N::Invoke<0xCB79AB67F7DF0E8F, bool>(p0, p1); } // F731332072F5156C 8DDD0B5B
   static uint32_t GET_SELECTED_PED_WEAPON(uint32_t p0) { return N::Invoke<0x38C3C5CBC068F495, uint32_t>(p0); } // 0A6DB4965674D243 D240123E

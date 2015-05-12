@@ -11,7 +11,7 @@ namespace rage {
 	static std::pair<ScriptThread*, int> org_thread;
 
 	void RunPatternScans() {
-		if (rage::g_registrationTable != 0) return;
+		if (g_script_handler_manager != 0) return;
 
 		char* location = hook::pattern("48 8B C8 EB 03 48 8B CB 48 8B 05").count(1).get(0).get<char>(11);
 		script_thread_array = reinterpret_cast<decltype(script_thread_array)>(location + *(int32_t*)location + 4);
